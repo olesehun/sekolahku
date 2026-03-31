@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Profil Sekolah</title>
+<title>Flipbook Sekolah</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet">
@@ -12,94 +12,95 @@ body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background: #fdf6f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-h1, h2 {
+/* container buku */
+.book {
+  width: 300px;
+  height: 400px;
+  position: relative;
+  perspective: 1500px;
+}
+
+/* halaman */
+.page {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: white;
+  border-radius: 10px;
+  transform-origin: left;
+  transition: transform 0.8s;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+.page h2 {
   font-family: 'Playfair Display', serif;
   color: #7b8fa1;
 }
 
-.page {
-  display: flex;
-  min-height: 100vh;
-  padding: 50px;
-  align-items: center;
-  gap: 40px;
-  border-bottom: 1px solid #eee;
+/* halaman posisi */
+#p1 { z-index: 3; }
+#p2 { z-index: 2; }
+#p3 { z-index: 1; }
+
+/* flip animation */
+.flipped {
+  transform: rotateY(-180deg);
 }
 
-.page:nth-child(even) {
-  flex-direction: row-reverse;
-  background: #fff;
+/* tombol */
+button {
+  margin-top: 420px;
+  padding: 10px 20px;
+  border: none;
+  background: #7b8fa1;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
 }
-
-.text {
-  flex: 1;
-}
-
-.image {
-  flex: 1;
-}
-
-.image img {
-  width: 100%;
-  border-radius: 20px;
-}
-
-.title {
-  text-align: center;
-  padding: 80px 20px;
-}
-
-.title h1 {
-  font-size: 48px;
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="title">
-  <h1>Profil Sekolah</h1>
-  <p>School Profile Book</p>
+<div class="book">
+  <div class="page" id="p1">
+    <h2>Kepala Sekolah</h2>
+    <p>Nama: [Nama Kepsek]</p>
+    <p>Sambutan singkat kepala sekolah.</p>
+  </div>
+
+  <div class="page" id="p2">
+    <h2>Guru</h2>
+    <p>Nama: [Nama Guru]</p>
+    <p>Mata pelajaran</p>
+  </div>
+
+  <div class="page" id="p3">
+    <h2>Karyawan</h2>
+    <p>Nama: [Nama]</p>
+    <p>Bagian</p>
+  </div>
 </div>
 
-<!-- KEPSEK -->
-<section class="page">
-  <div class="image">
-    <img src="https://via.placeholder.com/400">
-  </div>
-  <div class="text">
-    <h2>Kepala Sekolah</h2>
-    <p><b>Nama:</b> [Nama Kepsek]</p>
-    <p>Sambutan kepala sekolah. Isi dengan kata-kata formal dan inspiring.</p>
-  </div>
-</section>
+<button onclick="nextPage()">Next</button>
 
-<!-- GURU -->
-<section class="page">
-  <div class="image">
-    <img src="https://via.placeholder.com/400">
-  </div>
-  <div class="text">
-    <h2>Guru</h2>
-    <p><b>Nama:</b> [Nama Guru]</p>
-    <p>Mata pelajaran: Matematika</p>
-  </div>
-</section>
+<script>
+let current = 1;
 
-<!-- KARYAWAN -->
-<section class="page">
-  <div class="image">
-    <img src="https://via.placeholder.com/400">
-  </div>
-  <div class="text">
-    <h2>Karyawan</h2>
-    <p><b>Nama:</b> [Nama]</p>
-    <p>Bagian: Administrasi</p>
-  </div>
-</section>
+function nextPage() {
+  if (current <= 3) {
+    document.getElementById("p" + current).classList.add("flipped");
+    current++;
+  }
+}
+</script>
 
 </body>
 </html>
