@@ -17,52 +17,36 @@ body {
   align-items: center;
 }
 
-/* BOOK */
 .book {
-  width: 350px;
+  width: 700px;
   height: 450px;
-  position: relative;
-  perspective: 1500px;
+  display: flex;
   margin-top: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-/* PAGE */
 .page {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background: white;
-  border-radius: 15px;
-  transform-origin: left;
-  transition: transform 0.8s;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  width: 50%;
   padding: 20px;
+  background: white;
+  border-right: 1px solid #eee;
   overflow: auto;
 }
 
-.page h2 {
+.page:last-child {
+  border-right: none;
+}
+
+h2 {
   font-family: 'Playfair Display', serif;
   color: #7b8fa1;
 }
 
-.page img {
+img {
   width: 100%;
   border-radius: 10px;
 }
 
-/* Z INDEX */
-#p1 { z-index: 5; }
-#p2 { z-index: 4; }
-#p3 { z-index: 3; }
-#p4 { z-index: 2; }
-#p5 { z-index: 1; }
-
-/* FLIP */
-.flipped {
-  transform: rotateY(-180deg);
-}
-
-/* BUTTON */
 .controls {
   margin-top: 20px;
 }
@@ -77,7 +61,6 @@ button {
   cursor: pointer;
 }
 
-/* LIST LINK */
 a {
   display: block;
   margin: 5px 0;
@@ -92,48 +75,14 @@ a {
 
 <div class="book">
 
-<!-- COVER -->
-<div class="page" id="p1">
-  <h2>Nama Sekolah</h2>
-  <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1">
-  <p>Sekolah unggulan yang berkomitmen mencetak generasi masa depan.</p>
-</div>
+<!-- LEFT -->
+<div class="page" id="left"></div>
 
-<!-- VISI MISI + DAFTAR ISI -->
-<div class="page" id="p2">
-  <h2>Tentang Sekolah</h2>
-  <p><b>Visi:</b> Menjadi sekolah unggulan.</p>
-  <p><b>Misi:</b> Memberikan pendidikan berkualitas.</p>
-
-  <h3>Daftar Isi</h3>
-  <a onclick="goToPage(3)">1. Informasi Terbaru</a>
-  <a onclick="goToPage(4)">2. Struktur Organisasi</a>
-  <a onclick="goToPage(5)">3. Profil Tim</a>
-</div>
-
-<!-- INFORMASI -->
-<div class="page" id="p3">
-  <h2>Informasi Terbaru</h2>
-  <p>Kegiatan terbaru sekolah.</p>
-</div>
-
-<!-- STRUKTUR -->
-<div class="page" id="p4">
-  <h2>Struktur Organisasi</h2>
-  <p>Kepala Sekolah → Guru → Karyawan</p>
-</div>
-
-<!-- PROFIL -->
-<div class="page" id="p5">
-  <h2>Profil</h2>
-  <p>Kepala Sekolah: [Nama]</p>
-  <p>Guru: [Nama]</p>
-  <p>Karyawan: [Nama]</p>
-</div>
+<!-- RIGHT -->
+<div class="page" id="right"></div>
 
 </div>
 
-<!-- BUTTON -->
 <div class="controls">
   <button onclick="prevPage()">Back</button>
   <button onclick="nextPage()">Next</button>
@@ -141,37 +90,94 @@ a {
 </div>
 
 <script>
-let current = 1;
-const total = 5;
+let current = 0;
+
+const pages = [
+  [
+    `<h2>Nama Sekolah</h2>
+     <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1">
+     <p>Sekolah unggulan masa depan.</p>`,
+
+    `<h2>Welcome</h2>
+     <p>Selamat datang di website sekolah kami.</p>`
+  ],
+
+  [
+    `<h2>Tentang Sekolah</h2>
+     <p><b>Visi:</b> Menjadi terbaik</p>
+     <p><b>Misi:</b> Pendidikan berkualitas</p>`,
+
+    `<h2>Daftar Isi</h2>
+     <a onclick="goTo(2)">1. Informasi</a>
+     <a onclick="goTo(3)">2. Struktur</a>
+     <a onclick="goTo(4)">3. Profil</a>
+     <a onclick="goTo(5)">4. Kontak</a>`
+  ],
+
+  [
+    `<h2>Informasi Terbaru</h2>
+     <p>Kegiatan sekolah terbaru.</p>`,
+
+    `<h2>Update</h2>
+     <p>Event dan pengumuman.</p>`
+  ],
+
+  [
+    `<h2>Struktur Organisasi</h2>
+     <p>Kepala → Guru → Staff</p>`,
+
+    `<h2>Detail</h2>
+     <p>Penjelasan struktur.</p>`
+  ],
+
+  [
+    `<h2>Profil</h2>
+     <p>Kepsek: [Nama]</p>
+     <p>Guru: [Nama]</p>`,
+
+    `<h2>Karyawan</h2>
+     <p>Staff: [Nama]</p>`
+  ],
+
+  [
+    `<h2>Kontak</h2>
+     <p>Email: sekolah@email.com</p>`,
+
+    `<h2>Hubungi Kami</h2>
+     <p>Telp: 08xxxx</p>`
+  ]
+];
+
+function render() {
+  document.getElementById("left").innerHTML = pages[current][0];
+  document.getElementById("right").innerHTML = pages[current][1];
+}
 
 function nextPage() {
-  if (current <= total) {
-    document.getElementById("p" + current).classList.add("flipped");
+  if (current < pages.length - 1) {
     current++;
+    render();
   }
 }
 
 function prevPage() {
-  if (current > 1) {
+  if (current > 0) {
     current--;
-    document.getElementById("p" + current).classList.remove("flipped");
+    render();
   }
 }
 
 function goHome() {
-  for (let i = 1; i <= total; i++) {
-    document.getElementById("p" + i).classList.remove("flipped");
-  }
-  current = 1;
+  current = 0;
+  render();
 }
 
-function goToPage(page) {
-  goHome();
-  for (let i = 1; i < page; i++) {
-    document.getElementById("p" + i).classList.add("flipped");
-  }
+function goTo(page) {
   current = page;
+  render();
 }
+
+render();
 </script>
 
 </body>
