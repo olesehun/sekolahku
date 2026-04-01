@@ -5,68 +5,85 @@
 <title>Flipbook Sekolah</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #fdf6f9;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#fdf6f9,#eef5ff);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
-.book {
-  width: 700px;
-  height: 450px;
-  display: flex;
-  margin-top: 30px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+/* BOOK */
+.book{
+  position:relative;
+  width:400px;
+  height:500px;
+  perspective:2000px;
+  margin-top:40px;
 }
 
-.page {
-  width: 50%;
-  padding: 20px;
-  background: white;
-  border-right: 1px solid #eee;
-  overflow: auto;
+/* PAGE */
+.page{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:white;
+  border-radius:15px;
+  transform-origin:left;
+  transition:transform 1s;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+  padding:20px;
+  backface-visibility:hidden;
 }
 
-.page:last-child {
-  border-right: none;
+.page h2{
+  font-family:'Playfair Display',serif;
+  color:#7b8fa1;
 }
 
-h2 {
-  font-family: 'Playfair Display', serif;
-  color: #7b8fa1;
+.page img{
+  width:100%;
+  border-radius:10px;
+  margin-bottom:10px;
 }
 
-img {
-  width: 100%;
-  border-radius: 10px;
+/* BACK SIDE */
+.back{
+  transform:rotateY(180deg);
+  position:absolute;
+  top:0;
+  left:0;
 }
 
-.controls {
-  margin-top: 20px;
+/* FLIPPED */
+.flipped{
+  transform:rotateY(-180deg);
 }
 
-button {
-  padding: 10px 15px;
-  margin: 5px;
-  border: none;
-  border-radius: 10px;
-  background: #7b8fa1;
-  color: white;
-  cursor: pointer;
+/* BUTTON */
+.controls{
+  margin-top:20px;
 }
 
-a {
-  display: block;
-  margin: 5px 0;
-  color: #7b8fa1;
-  cursor: pointer;
-  text-decoration: underline;
+button{
+  padding:10px 18px;
+  margin:5px;
+  border:none;
+  border-radius:20px;
+  background:#7b8fa1;
+  color:white;
+  cursor:pointer;
+}
+
+a{
+  display:block;
+  margin:5px 0;
+  color:#7b8fa1;
+  cursor:pointer;
 }
 </style>
 </head>
@@ -75,109 +92,109 @@ a {
 
 <div class="book">
 
-<!-- LEFT -->
-<div class="page" id="left"></div>
+<!-- PAGE 1 -->
+<div class="page" id="p1">
+  <h2>Nama Sekolah</h2>
+  <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1">
+  <p>Sekolah modern & unggulan.</p>
+</div>
 
-<!-- RIGHT -->
-<div class="page" id="right"></div>
+<div class="page back" id="p1b">
+  <h2>Welcome</h2>
+  <p>Inspiring Future Leaders</p>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+  <h2>Tentang Sekolah</h2>
+  <p><b>Visi:</b> Unggul</p>
+  <p><b>Misi:</b> Berkualitas</p>
+</div>
+
+<div class="page back" id="p2b">
+  <h2>Daftar Isi</h2>
+  <a onclick="goTo(3)">Informasi</a>
+  <a onclick="goTo(5)">Profil</a>
+  <a onclick="goTo(7)">Kontak</a>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+  <h2>Informasi</h2>
+  <p>Kegiatan terbaru sekolah</p>
+</div>
+
+<div class="page back" id="p3b">
+  <h2>Update</h2>
+  <p>Event siswa</p>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+  <h2>Profil</h2>
+  <p>Kepsek: [Nama]</p>
+</div>
+
+<div class="page back" id="p4b">
+  <h2>Guru & Staff</h2>
+  <p>Data guru</p>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="p5">
+  <h2>Kontak</h2>
+  <p>Email: sekolah@email.com</p>
+</div>
+
+<div class="page back" id="p5b">
+  <h2>Hubungi</h2>
+  <p>Telp: 08xxxx</p>
+</div>
 
 </div>
 
 <div class="controls">
-  <button onclick="prevPage()">Back</button>
-  <button onclick="nextPage()">Next</button>
-  <button onclick="goHome()">Home</button>
+  <button onclick="prev()">Back</button>
+  <button onclick="next()">Next</button>
+  <button onclick="home()">Home</button>
 </div>
 
 <script>
-let current = 0;
+let current = 1;
+const total = 5;
 
-const pages = [
-  [
-    `<h2>Nama Sekolah</h2>
-     <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1">
-     <p>Sekolah unggulan masa depan.</p>`,
-
-    `<h2>Welcome</h2>
-     <p>Selamat datang di website sekolah kami.</p>`
-  ],
-
-  [
-    `<h2>Tentang Sekolah</h2>
-     <p><b>Visi:</b> Menjadi terbaik</p>
-     <p><b>Misi:</b> Pendidikan berkualitas</p>`,
-
-    `<h2>Daftar Isi</h2>
-     <a onclick="goTo(2)">1. Informasi</a>
-     <a onclick="goTo(3)">2. Struktur</a>
-     <a onclick="goTo(4)">3. Profil</a>
-     <a onclick="goTo(5)">4. Kontak</a>`
-  ],
-
-  [
-    `<h2>Informasi Terbaru</h2>
-     <p>Kegiatan sekolah terbaru.</p>`,
-
-    `<h2>Update</h2>
-     <p>Event dan pengumuman.</p>`
-  ],
-
-  [
-    `<h2>Struktur Organisasi</h2>
-     <p>Kepala → Guru → Staff</p>`,
-
-    `<h2>Detail</h2>
-     <p>Penjelasan struktur.</p>`
-  ],
-
-  [
-    `<h2>Profil</h2>
-     <p>Kepsek: [Nama]</p>
-     <p>Guru: [Nama]</p>`,
-
-    `<h2>Karyawan</h2>
-     <p>Staff: [Nama]</p>`
-  ],
-
-  [
-    `<h2>Kontak</h2>
-     <p>Email: sekolah@email.com</p>`,
-
-    `<h2>Hubungi Kami</h2>
-     <p>Telp: 08xxxx</p>`
-  ]
-];
-
-function render() {
-  document.getElementById("left").innerHTML = pages[current][0];
-  document.getElementById("right").innerHTML = pages[current][1];
-}
-
-function nextPage() {
-  if (current < pages.length - 1) {
+function next(){
+  if(current <= total){
+    document.getElementById("p"+current).classList.add("flipped");
+    document.getElementById("p"+current+"b").classList.add("flipped");
     current++;
-    render();
   }
 }
 
-function prevPage() {
-  if (current > 0) {
+function prev(){
+  if(current > 1){
     current--;
-    render();
+    document.getElementById("p"+current).classList.remove("flipped");
+    document.getElementById("p"+current+"b").classList.remove("flipped");
   }
 }
 
-function goHome() {
-  current = 0;
-  render();
+function home(){
+  for(let i=1;i<=total;i++){
+    document.getElementById("p"+i).classList.remove("flipped");
+    document.getElementById("p"+i+"b").classList.remove("flipped");
+  }
+  current = 1;
 }
 
-function goTo(page) {
-  current = page;
-  render();
+function goTo(p){
+  home();
+  for(let i=1;i<p;i++){
+    document.getElementById("p"+i).classList.add("flipped");
+    document.getElementById("p"+i+"b").classList.add("flipped");
+  }
+  current = p;
 }
-
-render();
 </script>
 
 </body>
