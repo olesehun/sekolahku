@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Flipbook Sekolah</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet">
 
 <style>
@@ -31,14 +30,20 @@ body {
   width: 100%;
   height: 100%;
   position: absolute;
-  background: white;
+  background: white; /* Ini warna kertas kosongnya */
   border-radius: 15px;
   transform-origin: left;
   transition: transform 0.8s;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   padding: 20px;
   overflow: auto;
-  background-color: #ffffff;
+}
+
+/* BAGIAN PENTING: Bikin isi tulisan ilang pas dibalik, tapi kertas putihnya tetep ada */
+.front-content {
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
 }
 
 .page h2 {
@@ -93,55 +98,57 @@ a {
 
 <div class="book">
 
-<!-- COVER -->
 <div class="page" id="p1">
-  <h2>Nama Sekolah</h2>
-  <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1">
-  <p>Sekolah unggulan yang berkomitmen mencetak generasi masa depan.</p>
+  <div class="front-content">
+    <h2>Nama Sekolah</h2>
+    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1">
+    <p>Sekolah unggulan yang berkomitmen mencetak generasi masa depan.</p>
+  </div>
 </div>
 
-<!-- VISI MISI + DAFTAR ISI -->
 <div class="page" id="p2">
-  <h2>Tentang Sekolah</h2>
-  <p><b>Visi:</b> Menjadi sekolah unggulan.</p>
-  <p><b>Misi:</b> Memberikan pendidikan berkualitas.</p>
-
-  <h3>Daftar Isi</h3>
-  <a onclick="goToPage(3)">1. Informasi Terbaru</a>
-  <a onclick="goToPage(4)">2. Struktur Organisasi</a>
-  <a onclick="goToPage(5)">3. Profil Tim</a>
-  <a onclick="goToPage(6)">4. Kontak Kami</a>
+  <div class="front-content">
+    <h2>Tentang Sekolah</h2>
+    <p><b>Visi:</b> Menjadi sekolah unggulan.</p>
+    <p><b>Misi:</b> Memberikan pendidikan berkualitas.</p>
+    <h3>Daftar Isi</h3>
+    <a onclick="goToPage(3)">1. Informasi Terbaru</a>
+    <a onclick="goToPage(4)">2. Struktur Organisasi</a>
+    <a onclick="goToPage(5)">3. Profil Tim</a>
+    <a onclick="goToPage(6)">4. Kontak Kami</a>
+  </div>
 </div>
 
-<!-- INFORMASI -->
 <div class="page" id="p3">
-  <h2>Informasi Terbaru</h2>
-  <p>Kegiatan terbaru sekolah.</p>
+  <div class="front-content">
+    <h2>Informasi Terbaru</h2>
+    <p>Kegiatan terbaru sekolah.</p>
+  </div>
 </div>
 
-<!-- STRUKTUR -->
 <div class="page" id="p4">
-  <h2>Struktur Organisasi</h2>
-  <p>Kepala Sekolah → Guru → Karyawan</p>
+  <div class="front-content">
+    <h2>Struktur Organisasi</h2>
+    <p>Kepala Sekolah → Guru → Karyawan</p>
+  </div>
 </div>
 
-<!-- PROFIL -->
 <div class="page" id="p5">
-  <h2>Profil</h2>
-  <p>Kepala Sekolah: [Nama]</p>
-  <p>Guru: [Nama]</p>
-  <p>Karyawan: [Nama]</p>
+  <div class="front-content">
+    <h2>Profil</h2>
+    <p>Kepala Sekolah: [Nama]</p>
+  </div>
 </div>
 
-<!-- KONTAK -->
 <div class="page" id="p6">
-  <h2>Kontak Kami</h2>
-  <p>Whatsapp: 082222222222222</p>
+  <div class="front-content">
+    <h2>Kontak Kami</h2>
+    <p>Whatsapp: 082222222222222</p>
+  </div>
 </div>
 
 </div>
 
-<!-- BUTTON -->
 <div class="controls">
   <button onclick="prevPage()">Back</button>
   <button onclick="nextPage()">Next</button>
