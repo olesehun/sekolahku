@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Ujian - SMPN 286 Jakarta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --navy: #000080;
+            --light-bg: #f4f7f6;
+            --text-dark: #333;
+        }
+
+        body {
+            margin: 0; font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg); color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        nav {
+            background: white; padding: 15px 10%;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--navy); font-weight: bold; }
+        nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
+        nav ul li { position: relative; margin-left: 25px; }
+        nav ul li a { text-decoration: none; color: var(--text-dark); font-weight: 500; }
+        
+        .dropdown {
+            display: none; position: absolute; background: white;
+            min-width: 200px; box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            top: 100%; left: 0; padding: 10px 0; border-radius: 0 0 5px 5px;
+        }
+        nav ul li:hover .dropdown { display: block; }
+        .dropdown li a { padding: 10px 20px; font-size: 14px; display: block; text-decoration: none; color: var(--text-dark); }
+
+        .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; min-height: 60vh; }
+        .section {
+            background: white; padding: 40px; border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .section h2 { color: var(--navy); border-bottom: 3px solid var(--navy); display: inline-block; padding-bottom: 5px; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        table th { background-color: var(--navy); color: white; padding: 12px; border: 1px solid #ddd; }
+        table td { padding: 10px; border: 1px solid #ddd; text-align: center; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+
+        footer { background: #000033; color: white; padding: 40px 10%; margin-top: 50px; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">SMPN 286</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li class="has-submenu">
+                <a href="#">Profil Sekolah</a>
+                <ul class="dropdown">
+                    <li><a href="index.html#struktur">Struktur Organisasi</a></li>
+                    <li><a href="#">Organisasi Siswa</a></li>
+                </ul>
+            </li>
+            <li><a href="index.html#tentang">Visi Misi</a></li>
+            <li class="has-submenu">
+                <a href="#">Informasi</a>
+                <ul class="dropdown">
+                    <li><a href="kalender.html">Kalender Akademik</a></li>
+                    <li><a href="ujian.html">Jadwal Ujian</a></li>
+                    <li><a href="index.html#informasi">Pengumuman</a></li>
+                </ul>
+            </li>
+            <li><a href="index.html#kegiatan">Kegiatan</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <h2>Jadwal Ujian Sekolah 2026</h2>
+            <p>Berikut adalah jadwal Asesmen Sumatif Akhir Semester (ASAS) Genap:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Hari / Tanggal</th>
+                        <th>Waktu</th>
+                        <th>Mata Pelajaran</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Senin, 8 Juni 2026</td>
+                        <td>07:30 - 09:30</td>
+                        <td>Bahasa Indonesia</td>
+                    </tr>
+                    <tr>
+                        <td>Senin, 8 Juni 2026</td>
+                        <td>10:00 - 11:30</td>
+                        <td>Pendidikan Agama</td>
+                    </tr>
+                    <tr>
+                        <td>Selasa, 9 Juni 2026</td>
+                        <td>07:30 - 09:30</td>
+                        <td>Matematika</td>
+                    </tr>
+                    <tr>
+                        <td>Selasa, 9 Juni 2026</td>
+                        <td>10:00 - 11:30</td>
+                        <td>PPKn</td>
+                    </tr>
+                    <tr>
+                        <td>Rabu, 10 Juni 2026</td>
+                        <td>07:30 - 09:30</td>
+                        <td>IPA</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <footer>
+        <p>📍 Jl. Grogol Petamburan, Jakarta Barat | 📞 0822-2222-2222</p>
+        <p style="font-size: 12px; opacity: 0.7;">© 2026 SMPN 286 Jakarta. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
