@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalender Akademik - SMPN 286 Jakarta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --navy: #000080;
+            --light-bg: #f4f7f6;
+            --text-dark: #333;
+        }
+
+        body {
+            margin: 0; font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg); color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* NAVIGATION */
+        nav {
+            background: white; padding: 15px 10%;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--navy); font-weight: bold; }
+        nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
+        nav ul li { position: relative; margin-left: 25px; }
+        nav ul li a { text-decoration: none; color: var(--text-dark); font-weight: 500; }
+        
+        .dropdown {
+            display: none; position: absolute; background: white;
+            min-width: 200px; box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            top: 100%; left: 0; padding: 10px 0; border-radius: 0 0 5px 5px;
+        }
+        nav ul li:hover .dropdown { display: block; }
+        .dropdown li { margin: 0; width: 100%; }
+        .dropdown li a { padding: 10px 20px; font-size: 14px; display: block; }
+
+        /* CONTAINER */
+        .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; min-height: 60vh; }
+        .section {
+            background: white; padding: 40px; border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .section h2 { color: var(--navy); border-bottom: 3px solid var(--navy); display: inline-block; padding-bottom: 5px; }
+
+        /* TABLE */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        table th { background-color: var(--navy); color: white; padding: 12px; border: 1px solid #ddd; }
+        table td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+        tr:nth-child(even) { background-color: #f2f2f2; }
+
+        /* FOOTER */
+        footer { background: #000033; color: white; padding: 40px 10%; margin-top: 50px; }
+        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; }
+        .footer-item { flex: 1; min-width: 250px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">SMPN 286</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li class="has-submenu">
+                <a href="#">Profil Sekolah</a>
+                <ul class="dropdown">
+                    <li><a href="index.html#struktur">Struktur Organisasi</a></li>
+                    <li><a href="#">Organisasi Siswa</a></li>
+                </ul>
+            </li>
+            <li><a href="index.html#tentang">Visi Misi</a></li>
+            <li class="has-submenu">
+                <a href="#">Informasi</a>
+                <ul class="dropdown">
+                    <li><a href="kalender.html">Kalender Akademik</a></li>
+                    <li><a href="#">Jadwal Ujian</a></li>
+                    <li><a href="index.html#informasi">Pengumuman</a></li>
+                </ul>
+            </li>
+            <li><a href="index.html#kegiatan">Kegiatan</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <h2>Kalender Akademik 2026/2027</h2>
+            <p>Berikut adalah jadwal kegiatan akademik SMPN 286 Jakarta:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kegiatan</th>
+                        <th>Tanggal / Bulan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Libur Idul Fitri 1447 H</td>
+                        <td>Maret - April 2026</td>
+                    </tr>
+                    <tr>
+                        <td>Ujian Akhir Semester (ASAS)</td>
+                        <td>8 - 12 Juni 2026</td>
+                    </tr>
+                    <tr>
+                        <td>Class Meeting</td>
+                        <td>15 - 19 Juni 2026</td>
+                    </tr>
+                    <tr>
+                        <td>Pembagian Rapor Semester Genap</td>
+                        <td>26 Juni 2026</td>
+                    </tr>
+                    <tr>
+                        <td>Libur Akhir Tahun Pelajaran</td>
+                        <td>27 Juni - 12 Juli 2026</td>
+                    </tr>
+                    <tr>
+                        <td>Hari Pertama Sekolah (MPLS)</td>
+                        <td>13 Juli 2026</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-item">
+                <h3>Hubungi Kami</h3>
+                <p>📍 Jl. Grogol Petamburan, Jakarta Barat</p>
+                <p>📞 0822-2222-2222</p>
+            </div>
+        </div>
+        <hr style="opacity: 0.2; margin: 20px 0;">
+        <p style="text-align: center; font-size: 12px; opacity: 0.7;">© 2026 SMPN 286 Jakarta. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
