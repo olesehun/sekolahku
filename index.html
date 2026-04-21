@@ -1,205 +1,205 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Resmi SMPN 286 Jakarta</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --navy: #000080;
-            --light-bg: #f4f7f6;
-            --text-dark: #333;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Resmi SMPN 286 Jakarta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --navy: #000080;
+            --light-bg: #f4f7f6;
+            --text-dark: #333;
+        }
 
-        body {
-            margin: 0; font-family: 'Poppins', sans-serif;
-            background-color: var(--light-bg); color: var(--text-dark);
-            line-height: 1.6; scroll-behavior: smooth;
-        }
+        body {
+            margin: 0; font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg); color: var(--text-dark);
+            line-height: 1.6; scroll-behavior: smooth;
+        }
 
-        /* NAVIGATION */
-        nav {
-            background: white; padding: 15px 10%;
-            display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky; top: 0; z-index: 1000;
-        }
+        /* NAVIGATION */
+        nav {
+            background: white; padding: 15px 10%;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 1000;
+        }
 
-        .logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--navy); font-weight: bold; }
-        nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
-        nav ul li { position: relative; margin-left: 25px; }
-        nav ul li a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.3s; }
-        
-        /* Dropdown */
-        .dropdown {
-            display: none; position: absolute; background: white;
-            min-width: 200px; box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
-            top: 100%; left: 0; padding: 10px 0; border-radius: 0 0 5px 5px;
-        }
-        nav ul li:hover .dropdown { display: block; }
-        .dropdown li { margin: 0; width: 100%; }
-        .dropdown li a { padding: 10px 20px; font-size: 14px; }
-        .dropdown li a:hover { background: var(--light-bg); }
+        .logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--navy); font-weight: bold; }
+        nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
+        nav ul li { position: relative; margin-left: 25px; }
+        nav ul li a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.3s; }
+        
+        /* Dropdown */
+        .dropdown {
+            display: none; position: absolute; background: white;
+            min-width: 200px; box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            top: 100%; left: 0; padding: 10px 0; border-radius: 0 0 5px 5px;
+        }
+        nav ul li:hover .dropdown { display: block; }
+        .dropdown li { margin: 0; width: 100%; }
+        .dropdown li a { padding: 10px 20px; font-size: 14px; }
+        .dropdown li a:hover { background: var(--light-bg); }
 
-        /* SLIDER BERITA (Home) */
-        .slider-container {
-            position: relative; width: 100%; height: 500px;
-            overflow: hidden; background: #000;
-        }
-        .slides { display: flex; width: 300%; height: 100%; transition: 0.5s; }
-        .slide {
-            width: 100.33%; height: 100%; position: relative;
-            background-size: cover; background-position: center;
-        }
-        .slide-content {
-            position: absolute; bottom: 50px; left: 10%;
-            color: white; background: rgba(0, 0, 128, 0.7);
-            padding: 20px; border-radius: 10px; max-width: 500px;
-        }
+        /* SLIDER BERITA (Home) */
+        .slider-container {
+            position: relative; width: 100%; height: 500px;
+            overflow: hidden; background: #000;
+        }
+        .slides { display: flex; width: 300%; height: 100%; transition: 0.5s; }
+        .slide {
+            width: 100.33%; height: 100%; position: relative;
+            background-size: cover; background-position: center;
+        }
+        .slide-content {
+            position: absolute; bottom: 50px; left: 10%;
+            color: white; background: rgba(0, 0, 128, 0.7);
+            padding: 20px; border-radius: 10px; max-width: 500px;
+        }
 
-        /* SOSIAL MEDIA */
-        .social-bar {
-            background: white; padding: 20px; text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        .social-bar a {
-            font-size: 24px; margin: 0 15px; color: var(--navy);
-            transition: 0.3s; text-decoration: none;
-        }
-        .social-bar a:hover { transform: scale(1.2); color: #444; }
+        /* SOSIAL MEDIA */
+        .social-bar {
+            background: white; padding: 20px; text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .social-bar a {
+            font-size: 24px; margin: 0 15px; color: var(--navy);
+            transition: 0.3s; text-decoration: none;
+        }
+        .social-bar a:hover { transform: scale(1.2); color: #444; }
 
-        /* STATISTIK DATA */
-        .stats-container {
-            display: flex; justify-content: space-around;
-            padding: 50px 10%; background: var(--navy); color: white;
-            text-align: center;
-        }
-        .stat-item h3 { font-size: 36px; margin: 0; }
-        .stat-item p { margin: 5px 0; opacity: 0.8; }
+        /* STATISTIK DATA */
+        .stats-container {
+            display: flex; justify-content: space-around;
+            padding: 50px 10%; background: var(--navy); color: white;
+            text-align: center;
+        }
+        .stat-item h3 { font-size: 36px; margin: 0; }
+        .stat-item p { margin: 5px 0; opacity: 0.8; }
 
-        /* CONTAINER UMUM */
-        .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
-        .section {
-            background: white; padding: 40px; margin-bottom: 30px;
-            border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        .section h2 { color: var(--navy); border-bottom: 3px solid var(--navy); display: inline-block; padding-bottom: 5px; }
+        /* CONTAINER UMUM */
+        .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
+        .section {
+            background: white; padding: 40px; margin-bottom: 30px;
+            border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .section h2 { color: var(--navy); border-bottom: 3px solid var(--navy); display: inline-block; padding-bottom: 5px; }
 
-        /* FOOTER */
-        footer { background: #000033; color: white; padding: 40px 10%; }
-        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; }
-        .footer-item { flex: 1; min-width: 250px; margin-bottom: 20px; }
+        /* FOOTER */
+        footer { background: #000033; color: white; padding: 40px 10%; }
+        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; }
+        .footer-item { flex: 1; min-width: 250px; margin-bottom: 20px; }
 
-        @media (max-width: 768px) {
-            nav ul, .stats-container { flex-direction: column; }
-            .stats-container { gap: 20px; }
-        }
-    </style>
+        @media (max-width: 768px) {
+            nav ul, .stats-container { flex-direction: column; }
+            .stats-container { gap: 20px; }
+        }
+    </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">SMP NEGERI 286 JAKARTA</div>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li class="has-submenu">
-                <a href="#">Profil Sekolah</a>
-                <ul class="dropdown">
-                    <li><a href="struktur.html">Struktur Organisasi</a></li>
-                    <li><a href="organisasi.html">Organisasi Siswa</a></li>
-                </ul>
-            </li>
-            <li><a href="#tentang">Visi Misi</a></li>
-            <li class="has-submenu">
-                <a href="#">Informasi</a>
-                <ul class="dropdown">
-                    <li><a href="kalender.html">Kalender Akademik</a></li>
-                    <li><a href="ujian.html">Jadwal Ujian</a></li>
-                    <li><a href="#informasi">Pengumuman</a></li>
-                </ul>
-            </li>
-           <li class="has-submenu">
-                <a href="#kegiatan">Kegiatan</a>
-                <ul class="dropdown">
-                    <li><a href="#kegiatan" onclick="showKegiatan('guru')">Guru dan Karyawan</a></li>
-                    <li><a href="#kegiatan" onclick="showKegiatan('siswa')">Ekstrakurikuler</a></li>
-                </ul>
-            </li> </ul> </nav>
+    <nav>
+        <div class="logo">SMP NEGERI 286 JAKARTA</div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li class="has-submenu">
+                <a href="#">Profil Sekolah</a>
+                <ul class="dropdown">
+                    <li><a href="struktur.html">Struktur Organisasi</a></li>
+                    <li><a href="organisasi.html">Organisasi Siswa</a></li>
+                </ul>
+            </li>
+            <li><a href="#tentang">Visi Misi</a></li>
+            <li class="has-submenu">
+                <a href="#">Informasi</a>
+                <ul class="dropdown">
+                    <li><a href="kalender.html">Kalender Akademik</a></li>
+                    <li><a href="ujian.html">Jadwal Ujian</a></li>
+                    <li><a href="#informasi">Pengumuman</a></li>
+                </ul>
+            </li>
+           <li class="has-submenu">
+                <a href="#kegiatan">Kegiatan</a>
+                <ul class="dropdown">
+                    <li><a href="#kegiatan" onclick="showKegiatan('guru')">Guru dan Karyawan</a></li>
+                    <li><a href="#kegiatan" onclick="showKegiatan('siswa')">Ekstrakurikuler</a></li>
+                </ul>
+            </li> </ul> </nav>
 
-    <div class="slider-container">
-        <div class="slides" id="slider">
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=1200')">
-                <div class="slide-content">
-                    <h2>Juara 1 Lomba Cerdas Cermat</h2>
-                    <p>Siswa SMPN 286 kembali menorehkan prestasi di tingkat Provinsi.</p>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200')">
-                <div class="slide-content">
-                    <h2>Kegiatan PPDB TA 2026/2027</h2>
-                    <p>Informasi pendaftaran siswa baru sudah dapat diakses melalui menu informasi.</p>
-                </div>
-            </div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1200')">
-                <div class="slide-content">
-                    <h2>Pelatihan Literasi Digital</h2>
-                    <p>Meningkatkan kemampuan siswa dalam menghadapi era teknologi modern.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="slider-container">
+        <div class="slides" id="slider">
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=1200')">
+                <div class="slide-content">
+                    <h2>Juara 1 Lomba Cerdas Cermat</h2>
+                    <p>Siswa SMPN 286 kembali menorehkan prestasi di tingkat Provinsi.</p>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200')">
+                <div class="slide-content">
+                    <h2>Kegiatan PPDB TA 2026/2027</h2>
+                    <p>Informasi pendaftaran siswa baru sudah dapat diakses melalui menu informasi.</p>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?w=1200')">
+                <div class="slide-content">
+                    <h2>Pelatihan Literasi Digital</h2>
+                    <p>Meningkatkan kemampuan siswa dalam menghadapi era teknologi modern.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <div class="social-bar">
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-tiktok"></i></a>
-        <a href="#"><i class="fab fa-facebook"></i></a>
-    </div>
+    <div class="social-bar">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+    </div>
 
-    <div class="stats-container">
-        <div class="stat-item">
-            <h3>573</h3>
-            <p>Siswa</p>
-        </div>
-        <div class="stat-item">
-            <h3>37</h3>
-            <p>Guru & Karyawan</p>
-        </div>
-        <div class="stat-item">
-            <h3>16</h3>
-            <p>Rombel Kelas</p>
-        </div>
-    </div>
+    <div class="stats-container">
+        <div class="stat-item">
+            <h3>573</h3>
+            <p>Siswa</p>
+        </div>
+        <div class="stat-item">
+            <h3>37</h3>
+            <p>Guru & Karyawan</p>
+        </div>
+        <div class="stat-item">
+            <h3>16</h3>
+            <p>Rombel Kelas</p>
+        </div>
+    </div>
 
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-item">
-                <h3>Hubungi Kami</h3>
-                <p>📍 Jl. Grogol Petamburan, Jakarta Barat</p>
-                <p>📞 0822-2222-2222</p>
-            </div>
-            <div class="footer-item">
-                <h3>Jam Operasional</h3>
-                <p>Senin - Jumat: 06:30 - 15:00</p>
-                <p>Sabtu - Minggu: Tutup</p>
-            </div>
-        </div>
-        <hr style="opacity: 0.2; margin: 20px 0;">
-        <p style="text-align: center; font-size: 12px; opacity: 0.7;">© 2026 SMPN 286 Jakarta. All Rights Reserved.</p>
-    </footer>
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-item">
+                <h3>Hubungi Kami</h3>
+                <p>📍 Jl. Grogol Petamburan, Jakarta Barat</p>
+                <p>📞 0822-2222-2222</p>
+            </div>
+            <div class="footer-item">
+                <h3>Jam Operasional</h3>
+                <p>Senin - Jumat: 06:30 - 15:00</p>
+                <p>Sabtu - Minggu: Tutup</p>
+            </div>
+        </div>
+        <hr style="opacity: 0.2; margin: 20px 0;">
+        <p style="text-align: center; font-size: 12px; opacity: 0.7;">© 2026 SMPN 286 Jakarta. All Rights Reserved.</p>
+    </footer>
 
-    <script>
-        // SCRIPT UNTUK SLIDER OTOMATIS
-        let currentSlide = 0;
-        const slider = document.getElementById('slider');
-        function autoSlide() {
-            currentSlide = (currentSlide + 1) % 3;
-            slider.style.transform = `translateX(-${currentSlide * 33.33}%)`;
-        }
-        setInterval(autoSlide, 5000); // Ganti slide setiap 3 detik
-    </script>
+    <script>
+        // SCRIPT UNTUK SLIDER OTOMATIS
+        let currentSlide = 0;
+        const slider = document.getElementById('slider');
+        function autoSlide() {
+            currentSlide = (currentSlide + 1) % 3;
+            slider.style.transform = `translateX(-${currentSlide * 33.33}%)`;
+        }
+        setInterval(autoSlide, 5000); // Ganti slide setiap 3 detik
+    </script>
 
 </body>
 </html>
