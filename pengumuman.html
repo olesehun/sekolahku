@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman - SMPN 286 Jakarta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --navy: #000080; --light-bg: #f4f7f6; --text-dark: #333; }
+        body { margin: 0; font-family: 'Poppins', sans-serif; background-color: var(--light-bg); color: var(--text-dark); }
+        
+        /* Navigasi Sama dengan Index */
+        nav { background: white; padding: 15px 10%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--navy); font-weight: bold; }
+        nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
+        nav ul li { position: relative; margin-left: 25px; }
+        nav ul li a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.3s; }
+        
+        /* Konten Pengumuman */
+        .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
+        .card-pengumuman { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 20px; border-left: 5px solid var(--navy); }
+        .date { font-size: 12px; color: #888; margin-bottom: 10px; }
+        .badge { background: var(--navy); color: white; padding: 5px 10px; border-radius: 5px; font-size: 11px; text-transform: uppercase; }
+        
+        footer { background: #000033; color: white; padding: 40px 10%; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">SMP NEGERI 286 JAKARTA</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#tentang">Visi Misi</a></li>
+            <li><a href="pengumuman.html">Pengumuman</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1 style="color: var(--navy); border-bottom: 3px solid var(--navy); display: inline-block;">Pusat Pengumuman</h1>
+        
+        <div class="card-pengumuman">
+            <span class="badge">Penting</span>
+            <div class="date">Diposting: 21 April 2026</div>
+            <h3>Penerimaan Peserta Didik Baru (PPDB) TA 2026/2027</h3>
+            <p>Informasi mengenai alur pendaftaran, persyaratan dokumen, dan jadwal seleksi masuk dapat diunduh melalui tautan di bawah ini...</p>
+            <a href="#" style="color: var(--navy); font-weight: bold;">Baca Selengkapnya →</a>
+        </div>
+
+        <div class="card-pengumuman">
+            <span class="badge">Akademik</span>
+            <div class="date">Diposting: 15 April 2026</div>
+            <h3>Jadwal Ujian Akhir Semester Genap</h3>
+            <p>Diharapkan seluruh siswa mempersiapkan diri. Jadwal lengkap sudah tersedia di mading sekolah dan file PDF berikut...</p>
+            <a href="#" style="color: var(--navy); font-weight: bold;">Download Jadwal →</a>
+        </div>
+    </div>
+
+    <footer>
+        <p style="text-align: center; font-size: 12px; opacity: 0.7;">© 2026 SMPN 286 Jakarta. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
