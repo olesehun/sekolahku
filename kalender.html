@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Resmi SMPN 286 Jakarta</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Kalender Pendidikan - SMPN 286 Jakarta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
@@ -18,188 +18,152 @@
         body {
             margin: 0; font-family: 'Poppins', sans-serif;
             background-color: var(--light-bg); color: var(--text-dark);
-            line-height: 1.6; scroll-behavior: smooth;
         }
 
-        /* --- NAVIGATION --- */
-        nav {
-            background: white; padding: 10px 10%;
-            display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky; top: 0; z-index: 1000;
-        }
-
-        .logo { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); font-weight: bold; }
-        nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
-        nav ul li { position: relative; margin-left: 25px; }
-        nav ul li a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 14px; transition: 0.3s; }
+        .container { max-width: 1000px; margin: 50px auto; padding: 20px; }
         
-        .dropdown {
-            display: none; position: absolute; background: white;
-            min-width: 200px; box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
-            top: 100%; left: 0; padding: 10px 0; border-radius: 0 0 5px 5px;
-        }
-        nav ul li:hover .dropdown { display: block; }
-        .dropdown li { margin: 0; width: 100%; position: relative; }
-        .dropdown li a { padding: 10px 20px; display: block; }
-        .dropdown li a:hover { background: var(--light-bg); }
+        .header-page { text-align: center; margin-bottom: 40px; }
+        .header-page h1 { color: var(--navy); margin-bottom: 10px; }
 
-        .submenu-right {
-            display: none; position: absolute; left: 100%; top: 0;
-            background: white; min-width: 200px; box-shadow: 8px 8px 16px rgba(0,0,0,0.1);
-            list-style: none; padding: 10px 0; border-radius: 0 5px 5px 0;
-        }
-        .dropdown li:hover .submenu-right { display: block; }
-        .has-inner:after {
-            content: ' \f105'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
-            float: right; font-size: 12px; margin-right: 10px;
-        }
-
-        /* --- SLIDER --- */
-        .slider-container { position: relative; width: 100%; height: 400px; overflow: hidden; background: #000; }
-        .slides { display: flex; width: 300%; height: 100%; transition: 0.8s ease-in-out; }
-        .slide { width: 33.333%; height: 100%; position: relative; background-size: cover; background-position: center; }
-        .slide-content {
-            position: absolute; bottom: 50px; left: 10%;
-            color: white; background: rgba(0, 0, 128, 0.7);
-            padding: 20px; border-radius: 10px; max-width: 500px;
-        }
-
-        /* --- KALENDER SECTION --- */
+        /* Struktur Kalender */
         .calendar-card {
-            background: white; border-radius: 15px; overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin: 40px 0;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 40px;
         }
-        .calendar-month { background: var(--navy); color: white; padding: 15px; text-align: center; font-size: 20px; font-weight: 600; }
-        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); }
-        .day-name { background: #eee; padding: 10px; text-align: center; font-weight: 600; font-size: 12px; }
-        .calendar-day { padding: 10px; height: 80px; border-right: 1px solid #eee; border-bottom: 1px solid #eee; position: relative; font-size: 14px; }
+
+        .calendar-month {
+            background: var(--navy);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            border-bottom: 1px solid #eee;
+        }
+
+        .day-name {
+            background: #eee;
+            padding: 10px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .calendar-day {
+            padding: 15px;
+            height: 100px;
+            border-right: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            position: relative;
+        }
+
+        .calendar-day:nth-child(7n) { border-right: none; }
         .calendar-day.sunday { color: var(--red-holiday); }
-        .event { font-size: 9px; background: #3498db; color: white; padding: 2px 5px; border-radius: 3px; margin-top: 5px; display: block; }
+        
+        .date-num { font-weight: 600; }
+        
+        /* Event Badge */
+        .event {
+            font-size: 10px;
+            background: #3498db;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 3px;
+            margin-top: 5px;
+            display: block;
+            line-height: 1.2;
+        }
+
         .event.holiday { background: var(--red-holiday); }
 
-        /* --- UTILS --- */
-        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-        .section { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .stats-container { display: flex; justify-content: space-around; padding: 30px 10%; background: var(--navy); color: white; text-align: center; }
-        .stat-item h3 { font-size: 28px; margin: 0; }
-        .social-bar { padding: 15px; text-align: center; background: white; }
-        .social-bar a { font-size: 20px; margin: 0 15px; color: var(--navy); transition: 0.3s; text-decoration: none; display: inline-block; }
-        footer { background: #000033; color: white; padding: 40px 10%; }
+        /* Keterangan */
+        .legend {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
 
         @media (max-width: 768px) {
-            nav { flex-direction: column; }
-            nav ul { flex-direction: column; display: none; } /* Mobile menu logic hidden for simplicity */
-            .stats-container { flex-direction: column; gap: 20px; }
+            .calendar-day { height: 70px; padding: 5px; font-size: 12px; }
+            .event { font-size: 8px; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">SMP NEGERI 286 JAKARTA</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li class="has-submenu">
-                <a href="#">Profil Sekolah</a>
-                <ul class="dropdown">
-                    <li><a href="tentang.html">Tentang Sekolah</a></li>
-                    <li><a href="visi.html">Visi Misi</a></li>
-                    <li><a href="struktur.html">Struktur Organisasi</a></li>
-                    <li><a href="prestasi.html">Prestasi</a></li>
-                    <li><a href="fasilitas.html">Fasilitas</a></li>
-                    <li><a href="organisasi.html">Organisasi Siswa</a></li>
-                </ul>
-            </li>
-            <li><a href="kalender.html">Kalender Pendidikan</a></li>
-            <li class="has-submenu">
-                <a href="#">Kegiatan</a>
-                <ul class="dropdown">
-                    <li><a href="kegiatan-guru.html">Guru & Karyawan</a></li>
-                    <li class="has-inner">
-                        <a href="#">Peserta Didik</a>
-                        <ul class="submenu-right">
-                            <li><a href="#">Pembiasaan</a></li>
-                            <li><a href="organisasi.html">Organisasi</a></li>
-                            <li><a href="#">Ekskul</a></li>
-                            <li><a href="#">Komunitas</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li class="has-submenu">
-                <a href="#">Informasi</a>
-                <ul class="dropdown">
-                    <li><a href="pengumuman.html">Pengumuman</a></li>
-                    <li><a href="ujian.html">Jadwal Ujian</a></li>
-                    <li><a href="pelajaran.html">Jadwal Pelajaran</a></li>
-                    <li><a href="perlombaan.html">Perlombaan</a></li>
-                </ul>
-            </li>
-            <li class="has-submenu">
-                <a href="#">Pendaftaran</a>
-                <ul class="dropdown">
-                    <li><a href="alur.html">Alur Pendaftaran</a></li>
-                    <li><a href="#">PPDB</a></li>
-                    <li><a href="#">Mutasi</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-
-    <div class="slider-container">
-        <div class="slides" id="slider">
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=1200')">
-                <div class="slide-content"><h2>Prestasi Siswa</h2><p>Juara Lomba Cerdas Cermat 2026.</p></div>
-            </div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200')">
-                <div class="slide-content"><h2>PPDB 2026</h2><p>Pendaftaran telah dibuka!</p></div>
-            </div>
+    <div class="container">
+        <div class="header-page">
+            <h1>Kalender Pendidikan</h1>
+            <p>Tahun Ajaran 2025/2026</p>
         </div>
-    </div>
 
-    <div class="container" id="kalender">
-        <h2 style="color: var(--navy); border-bottom: 3px solid var(--navy); display: inline-block;">Kalender Pendidikan</h2>
         <div class="calendar-card">
             <div class="calendar-month">Januari 2026</div>
             <div class="calendar-grid">
-                <div class="day-name">Min</div><div class="day-name">Sen</div><div class="day-name">Sel</div><div class="day-name">Rab</div><div class="day-name">Kam</div><div class="day-name">Jum</div><div class="day-name">Sab</div>
-                
-                <div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div>
-                <div class="calendar-day"><span class="date-num">1</span><span class="event holiday">Tahun Baru</span></div>
+                <div class="day-name">Min</div>
+                <div class="day-name">Sen</div>
+                <div class="day-name">Sel</div>
+                <div class="day-name">Rab</div>
+                <div class="day-name">Kam</div>
+                <div class="day-name">Jum</div>
+                <div class="day-name">Sab</div>
+
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day">
+                    <span class="date-num">1</span>
+                    <span class="event holiday">Tahun Baru</span>
+                </div>
                 <div class="calendar-day"><span class="date-num">2</span></div>
                 <div class="calendar-day"><span class="date-num">3</span></div>
                 <div class="calendar-day"><span class="date-num">4</span></div>
+
                 <div class="calendar-day sunday"><span class="date-num">5</span></div>
-                <div class="calendar-day"><span class="date-num">6</span><span class="event">Hari Pertama</span></div>
-                <div class="calendar-day"><span class="date-num">7</span></div><div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div>
+                <div class="calendar-day">
+                    <span class="date-num">6</span>
+                    <span class="event">Hari Pertama Masuk</span>
+                </div>
+                <div class="calendar-day"><span class="date-num">7</span></div>
+                <div class="calendar-day"><span class="date-num">8</span></div>
+                <div class="calendar-day"><span class="date-num">9</span></div>
+                <div class="calendar-day"><span class="date-num">10</span></div>
+                <div class="calendar-day"><span class="date-num">11</span></div>
+
+                <div class="calendar-day sunday"><span class="date-num">12</span></div>
+                <div class="calendar-day"><span class="date-num">13</span></div>
+                <div class="calendar-day"><span class="date-num">14</span></div>
+                <div class="calendar-day"><span class="date-num">15</span></div>
+                <div class="calendar-day"><span class="date-num">16</span></div>
+                <div class="calendar-day"><span class="date-num">17</span></div>
+                <div class="calendar-day"><span class="date-num">18</span></div>
             </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item"><div class="dot" style="background: #3498db;"></div> Kegiatan Sekolah</div>
+            <div class="legend-item"><div class="dot" style="background: var(--red-holiday);"></div> Libur Nasional</div>
+            <div class="legend-item"><div class="dot" style="background: #2ecc71;"></div> Ujian/Asesmen</div>
+        </div>
+        
+        <div style="margin-top: 30px; text-align: center;">
+            <a href="index.html" style="text-decoration: none; color: var(--navy); font-weight: 600;"><i class="fas fa-arrow-left"></i> Kembali ke Home</a>
         </div>
     </div>
 
-    <div class="stats-container">
-        <div class="stat-item"><h3>573</h3><p>Siswa</p></div>
-        <div class="stat-item"><h3>37</h3><p>Guru</p></div>
-        <div class="stat-item"><h3>16</h3><p>Rombel</p></div>
-    </div>
-
-    <div class="social-bar">
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-tiktok"></i></a>
-        <a href="#"><i class="fab fa-facebook"></i></a>
-    </div>
-
-    <footer>
-        <p style="text-align: center; font-size: 12px;">© 2026 SMPN 286 Jakarta.</p>
-    </footer>
-
-    <script>
-        let currentSlide = 0;
-        const slider = document.getElementById('slider');
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % 2;
-            slider.style.transform = `translateX(-${currentSlide * 50}%)`;
-        }, 5000);
-    </script>
 </body>
 </html>
