@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalender Pendidikan - SMPN 286 Jakarta</title>
+    <title>Kalender Pendidikan 2026 - SMPN 286 Jakarta</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -18,88 +18,120 @@
         body {
             margin: 0; font-family: 'Poppins', sans-serif;
             background-color: var(--light-bg); color: var(--text-dark);
+            overflow-x: hidden;
         }
 
-        .container { max-width: 1000px; margin: 50px auto; padding: 20px; }
+        .container { max-width: 1100px; margin: 30px auto; padding: 20px; }
         
-        .header-page { text-align: center; margin-bottom: 40px; }
-        .header-page h1 { color: var(--navy); margin-bottom: 10px; }
+        .header-page { text-align: center; margin-bottom: 20px; }
+        .header-page h1 { color: var(--navy); margin-bottom: 5px; }
 
-        /* Struktur Kalender */
-        .calendar-card {
-            background: white;
+        /* SLIDER WRAPPER */
+        .calendar-slider-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            overflow: hidden;
-            margin-bottom: 40px;
         }
 
-        .calendar-month {
+        .calendar-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 1200%; /* 12 bulan */
+        }
+
+        .calendar-card {
+            width: 8.333%; /* 1/12 dari total track */
+            background: white;
+            flex-shrink: 0;
+        }
+
+        /* Navigasi Button */
+        .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .btn-slide {
             background: var(--navy);
             color: white;
-            padding: 20px;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-slide:hover { opacity: 0.8; }
+
+        .calendar-month-title {
+            background: var(--navy);
+            color: white;
+            padding: 15px;
             text-align: center;
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 600;
         }
 
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            border-bottom: 1px solid #eee;
         }
 
         .day-name {
-            background: #eee;
+            background: #f1f1f1;
             padding: 10px;
             text-align: center;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13px;
+            border-bottom: 1px solid #ddd;
         }
 
         .calendar-day {
-            padding: 15px;
-            height: 100px;
+            padding: 10px;
+            height: 90px;
             border-right: 1px solid #eee;
             border-bottom: 1px solid #eee;
             position: relative;
+            font-size: 14px;
         }
 
-        .calendar-day:nth-child(7n) { border-right: none; }
-        .calendar-day.sunday { color: var(--red-holiday); }
+        .calendar-day.sunday { color: var(--red-holiday); font-weight: bold; }
+        .date-num { display: block; margin-bottom: 5px; }
         
-        .date-num { font-weight: 600; }
-        
-        /* Event Badge */
         .event {
-            font-size: 10px;
+            font-size: 9px;
             background: #3498db;
             color: white;
-            padding: 2px 5px;
+            padding: 2px 4px;
             border-radius: 3px;
-            margin-top: 5px;
             display: block;
-            line-height: 1.2;
+            margin-bottom: 2px;
         }
-
         .event.holiday { background: var(--red-holiday); }
 
-        /* Keterangan */
+        /* LEGEND */
         .legend {
             background: white;
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
+            margin-top: 20px;
             display: flex;
+            justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
+            font-size: 13px;
         }
-
-        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 14px; }
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .legend-item { display: flex; align-items: center; gap: 8px; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; }
 
         @media (max-width: 768px) {
-            .calendar-day { height: 70px; padding: 5px; font-size: 12px; }
-            .event { font-size: 8px; }
+            .calendar-day { height: 60px; padding: 5px; font-size: 11px; }
+            .event { display: none; } /* Sembunyikan teks event di mobile agar tidak berantakan */
         }
     </style>
 </head>
@@ -108,50 +140,56 @@
     <div class="container">
         <div class="header-page">
             <h1>Kalender Pendidikan</h1>
-            <p>Tahun Ajaran 2025/2026</p>
+            <p>Tahun 2026</p>
         </div>
 
-        <div class="calendar-card">
-            <div class="calendar-month">Januari 2026</div>
-            <div class="calendar-grid">
-                <div class="day-name">Min</div>
-                <div class="day-name">Sen</div>
-                <div class="day-name">Sel</div>
-                <div class="day-name">Rab</div>
-                <div class="day-name">Kam</div>
-                <div class="day-name">Jum</div>
-                <div class="day-name">Sab</div>
+        <div class="nav-btns">
+            <button class="btn-slide" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i> Sebelumnya</button>
+            <h3 id="monthIndicator">Januari 2026</h3>
+            <button class="btn-slide" onclick="moveSlide(1)">Berikutnya <i class="fas fa-chevron-right"></i></button>
+        </div>
 
-                <div class="calendar-day"></div>
-                <div class="calendar-day"></div>
-                <div class="calendar-day"></div>
-                <div class="calendar-day">
-                    <span class="date-num">1</span>
-                    <span class="event holiday">Tahun Baru</span>
+        <div class="calendar-slider-wrapper">
+            <div class="calendar-track" id="calendarTrack">
+                
+                <div class="calendar-card">
+                    <div class="calendar-month-title">Januari 2026</div>
+                    <div class="calendar-grid">
+                        <div class="day-name">Min</div><div class="day-name">Sen</div><div class="day-name">Sel</div><div class="day-name">Rab</div><div class="day-name">Kam</div><div class="day-name">Jum</div><div class="day-name">Sab</div>
+                        <div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div><div class="calendar-day"></div>
+                        <div class="calendar-day"><span class="date-num">1</span><span class="event holiday">Tahun Baru</span></div>
+                        <div class="calendar-day"><span class="date-num">2</span></div><div class="calendar-day"><span class="date-num">3</span></div>
+                        <div class="calendar-day sunday">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div><div class="calendar-day">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div>
+                        <div class="calendar-day sunday">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div><div class="calendar-day">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div>
+                        <div class="calendar-day sunday">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div><div class="calendar-day">22</div><div class="calendar-day">23</div><div class="calendar-day">24</div>
+                        <div class="calendar-day sunday">25</div><div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div><div class="calendar-day">29</div><div class="calendar-day">30</div><div class="calendar-day">31</div>
+                    </div>
                 </div>
-                <div class="calendar-day"><span class="date-num">2</span></div>
-                <div class="calendar-day"><span class="date-num">3</span></div>
-                <div class="calendar-day"><span class="date-num">4</span></div>
 
-                <div class="calendar-day sunday"><span class="date-num">5</span></div>
-                <div class="calendar-day">
-                    <span class="date-num">6</span>
-                    <span class="event">Hari Pertama Masuk</span>
+                <div class="calendar-card">
+                    <div class="calendar-month-title">Februari 2026</div>
+                    <div class="calendar-grid">
+                        <div class="day-name">Min</div><div class="day-name">Sen</div><div class="day-name">Sel</div><div class="day-name">Rab</div><div class="day-name">Kam</div><div class="day-name">Jum</div><div class="day-name">Sab</div>
+                        <div class="calendar-day sunday">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div>
+                        <div class="calendar-day sunday">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div>
+                        <div class="calendar-day sunday">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div>
+                        <div class="calendar-day sunday">22</div><div class="calendar-day">23</div><div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div>
+                    </div>
                 </div>
-                <div class="calendar-day"><span class="date-num">7</span></div>
-                <div class="calendar-day"><span class="date-num">8</span></div>
-                <div class="calendar-day"><span class="date-num">9</span></div>
-                <div class="calendar-day"><span class="date-num">10</span></div>
-                <div class="calendar-day"><span class="date-num">11</span></div>
 
-                <div class="calendar-day sunday"><span class="date-num">12</span></div>
-                <div class="calendar-day"><span class="date-num">13</span></div>
-                <div class="calendar-day"><span class="date-num">14</span></div>
-                <div class="calendar-day"><span class="date-num">15</span></div>
-                <div class="calendar-day"><span class="date-num">16</span></div>
-                <div class="calendar-day"><span class="date-num">17</span></div>
-                <div class="calendar-day"><span class="date-num">18</span></div>
-            </div>
+                <div class="calendar-card">
+                    <div class="calendar-month-title">Maret 2026</div>
+                    <div class="calendar-grid">
+                        <div class="day-name">Min</div><div class="day-name">Sen</div><div class="day-name">Sel</div><div class="day-name">Rab</div><div class="day-name">Kam</div><div class="day-name">Jum</div><div class="day-name">Sab</div>
+                        <div class="calendar-day sunday">1</div><div class="calendar-day">2</div><div class="calendar-day">3</div><div class="calendar-day">4</div><div class="calendar-day">5</div><div class="calendar-day">6</div><div class="calendar-day">7</div>
+                        <div class="calendar-day sunday">8</div><div class="calendar-day">9</div><div class="calendar-day">10</div><div class="calendar-day">11</div><div class="calendar-day">12</div><div class="calendar-day">13</div><div class="calendar-day">14</div>
+                        <div class="calendar-day sunday">15</div><div class="calendar-day">16</div><div class="calendar-day">17</div><div class="calendar-day">18</div><div class="calendar-day">19</div><div class="calendar-day">20</div><div class="calendar-day">21</div>
+                        <div class="calendar-day sunday">22</div><div class="calendar-day">23</div><div class="calendar-day">24</div><div class="calendar-day">25</div><div class="calendar-day">26</div><div class="calendar-day">27</div><div class="calendar-day">28</div>
+                        <div class="calendar-day sunday">29</div><div class="calendar-day">30</div><div class="calendar-day">31</div>
+                    </div>
+                </div>
+
+                </div>
         </div>
 
         <div class="legend">
@@ -159,11 +197,27 @@
             <div class="legend-item"><div class="dot" style="background: var(--red-holiday);"></div> Libur Nasional</div>
             <div class="legend-item"><div class="dot" style="background: #2ecc71;"></div> Ujian/Asesmen</div>
         </div>
-        
+
         <div style="margin-top: 30px; text-align: center;">
             <a href="index.html" style="text-decoration: none; color: var(--navy); font-weight: 600;"><i class="fas fa-arrow-left"></i> Kembali ke Home</a>
         </div>
     </div>
 
+    <script>
+        let currentMonth = 0;
+        const track = document.getElementById('calendarTrack');
+        const indicator = document.getElementById('monthIndicator');
+        const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+
+        function moveSlide(direction) {
+            currentMonth += direction;
+            
+            if (currentMonth < 0) currentMonth = 0;
+            if (currentMonth > 11) currentMonth = 11;
+
+            track.style.transform = `translateX(-${currentMonth * 8.333}%)`;
+            indicator.innerText = `${months[currentMonth]} 2026`;
+        }
+    </script>
 </body>
 </html>
