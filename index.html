@@ -33,7 +33,6 @@
         nav ul li { position: relative; margin-left: 25px; }
         nav ul li a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.3s; }
         
-        /* Dropdown */
         .dropdown {
             display: none; position: absolute; background: white;
             min-width: 200px; box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
@@ -46,28 +45,35 @@
 
         /* SLIDER BERITA */
         .slider-container {
-            position: relative; width: 100%; height: 450px;
+            position: relative; width: 100%; height: 500px;
             overflow: hidden; background: #000;
         }
-        .slides { display: flex; width: 100%; height: 100%; }
+        .slides { display: flex; width: 300%; height: 100%; transition: 0.8s ease-in-out; }
         .slide {
-            width: 100%; height: 100%; position: relative;
-            background-image: url('https://images.unsplash.com/photo-1523050335392-9bef867a0013?w=1200');
+            width: 33.333%; height: 100%; position: relative;
             background-size: cover; background-position: center;
         }
-        .slide-overlay {
-            position: absolute; bottom: 0; left: 0; right: 0;
-            background: linear-gradient(transparent, rgba(0,0,128,0.8));
-            padding: 50px 10%; color: white;
+        .slide-content {
+            position: absolute; bottom: 50px; left: 10%;
+            color: white; background: rgba(0, 0, 128, 0.7);
+            padding: 20px; border-radius: 10px; max-width: 500px;
         }
 
-        /* CONTAINER UMUM */
+        /* CONTAINER */
         .container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
         .section {
             background: white; padding: 40px; margin-bottom: 30px;
             border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         .section h2 { color: var(--navy); border-bottom: 3px solid var(--navy); display: inline-block; padding-bottom: 5px; }
+
+        /* STATISTIK */
+        .stats-container {
+            display: flex; justify-content: space-around;
+            padding: 60px 10%; background: var(--navy); color: white;
+            text-align: center;
+        }
+        .stat-item h3 { font-size: 36px; margin: 0; }
 
         /* SOSIAL MEDIA */
         .social-bar {
@@ -78,25 +84,18 @@
             font-size: 28px; margin: 0 20px; color: var(--navy);
             transition: 0.3s; text-decoration: none; display: inline-block;
         }
-        .social-bar a:hover { transform: translateY(-5px); color: #444; }
-
-        /* STATISTIK DATA */
-        .stats-container {
-            display: flex; justify-content: space-around;
-            padding: 60px 10%; background: var(--navy); color: white;
-            text-align: center;
-        }
-        .stat-item h3 { font-size: 42px; margin: 0; font-family: 'Playfair Display', serif; }
-        .stat-item p { margin: 5px 0; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px; }
+        .social-bar a:hover { transform: translateY(-5px); }
 
         /* FOOTER */
-        footer { background: #000033; color: white; padding: 40px 10%; text-align: center; }
+        footer { background: #000033; color: white; padding: 40px 10%; }
+        .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
+        .footer-item { flex: 1; min-width: 250px; }
 
         @media (max-width: 768px) {
-            nav { flex-direction: column; padding: 15px; }
-            nav ul { flex-direction: column; width: 100%; text-align: center; margin-top: 15px; }
-            nav ul li { margin: 10px 0; }
-            .stats-container { flex-direction: column; gap: 40px; }
+            nav { flex-direction: column; text-align: center; }
+            nav ul { flex-direction: column; margin-top: 15px; }
+            nav ul li { margin-left: 0; margin-bottom: 10px; }
+            .stats-container { flex-direction: column; gap: 30px; }
             .sambutan-flex { flex-direction: column; text-align: center; }
         }
     </style>
@@ -104,94 +103,9 @@
 <body>
 
     <nav>
-        <div class="logo">SMPN 286 JAKARTA</div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li class="has-submenu">
-                <a href="#">Profil Sekolah</a>
-                <ul class="dropdown">
-                    <li><a href="#">Struktur Organisasi</a></li>
-                    <li><a href="organisasi.html">Organisasi Siswa</a></li>
-                </ul>
-            </li>
-            <li><a href="#tentang">Visi Misi</a></li>
-            <li class="has-submenu">
-                <a href="#">Informasi</a>
-                <ul class="dropdown">
-                    <li><a href="kalender.html">Kalender Akademik</a></li>
-                    <li><a href="pengumuman.html">Pengumuman</a></li>
-                </ul>
-            </li>
-            <li><a href="kegiatan-guru.html">Kegiatan</a></li>
-        </ul>
-    </nav>
-
-    <div class="slider-container">
-        <div class="slide">
-            <div class="slide-overlay">
-                <h1 style="font-family: 'Playfair Display', serif; margin: 0;">Selamat Datang di Website Resmi</h1>
-                <p style="font-size: 18px; opacity: 0.9;">Mewujudkan Generasi Cerdas, Berkarakter, dan Unggul dalam Prestasi.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="section sambutan-flex" style="display: flex; align-items: center; gap: 40px;">
-            <div style="flex: 1; min-width: 250px; text-align: center;">
-                <img src="https://via.placeholder.com/250x300" alt="Kepala Sekolah" style="width: 100%; max-width: 250px; border-radius: 15px; border: 5px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
-                <h4 style="margin: 15px 0 5px 0; color: var(--navy);">Nama Kepala Sekolah, M.Pd</h4>
-                <p style="font-size: 13px; color: #666; margin: 0;">Kepala SMPN 286 Jakarta</p>
-            </div>
-            <div style="flex: 2; min-width: 300px;">
-                <h2 style="margin-top: 0;">Sambutan Kepala Sekolah</h2>
-                <p>Assalamu’alaikum Warahmatullahi Wabarakatuh,</p>
-                <p>Puji syukur kita panjatkan ke hadirat Allah SWT atas terbitnya website resmi SMPN 286 Jakarta. Website ini hadir sebagai media informasi dan komunikasi antara sekolah, orang tua, siswa, serta masyarakat luas.</p>
-                <p>Kami berharap melalui platform ini, segala kebaikan dan prestasi yang diraih oleh putra-putri kita dapat terdokumentasi dengan baik dan menjadi inspirasi bagi kita semua untuk terus memajukan kualitas pendidikan di Jakarta.</p>
-                <p>Terima kasih atas kunjungannya. Wassalamu’alaikum Warahmatullahi Wabarakatuh.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="social-bar">
-        <p style="margin-bottom: 15px; font-weight: 600; color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 2px;">Follow Our Social Media</p>
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-tiktok"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
-    </div>
-
-    <div class="stats-container">
-        <div class="stat-item">
-            <h3>573</h3>
-            <p>Siswa</p>
-        </div>
-        <div class="stat-item">
-            <h3>37</h3>
-            <p>Guru & Staff</p>
-        </div>
-        <div class="stat-item">
-            <h3>16</h3>
-            <p>Rombel</p>
-        </div>
-        <div class="stat-item">
-            <h3>A</h3>
-            <p>Akreditasi</p>
-        </div>
-    </div>
-
-    <footer>
-        <p style="margin-bottom: 10px;">SMP NEGERI 286 JAKARTA</p>
-        <p style="font-size: 12px; opacity: 0.6;">Jl. Grogol Petamburan, Jakarta Barat, DKI Jakarta</p>
-        <hr style="opacity: 0.1; margin: 20px 0;">
-        <p style="font-size: 11px; opacity: 0.5;">© 2026 SMPN 286 Jakarta. All Rights Reserved.</p>
-    </footer>
-</head>
-<body>
-
-    <nav>
         <div class="logo">SMP NEGERI 286 JAKARTA</div>
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li class="has-submenu">
                 <a href="#">Profil Sekolah</a>
                 <ul class="dropdown">
@@ -208,13 +122,15 @@
                     <li><a href="pengumuman.html">Pengumuman</a></li>
                 </ul>
             </li>
-           <li class="has-submenu">
+            <li class="has-submenu">
                 <a href="#">Kegiatan</a>
                 <ul class="dropdown">
                     <li><a href="kegiatan-guru.html">Guru & Karyawan</a></li>
-                    <li><a href="#kegiatan" onclick="showKegiatan('siswa')">Ekstrakurikuler</a></li>
+                    <li><a href="#">Ekstrakurikuler</a></li>
                 </ul>
-            </li> </ul> </nav>
+            </li>
+        </ul>
+    </nav>
 
     <div class="slider-container">
         <div class="slides" id="slider">
@@ -239,6 +155,23 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="section sambutan-flex" style="display: flex; align-items: center; gap: 40px;">
+            <div style="flex: 1; min-width: 250px; text-align: center;">
+                <img src="https://via.placeholder.com/250x300" alt="Kepala Sekolah" style="width: 100%; max-width: 250px; border-radius: 15px; border: 5px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                <h4 style="margin: 15px 0 5px 0; color: var(--navy);">Nama Kepala Sekolah, M.Pd</h4>
+                <p style="font-size: 13px; color: #666; margin: 0;">Kepala SMPN 286 Jakarta</p>
+            </div>
+            <div style="flex: 2; min-width: 300px;">
+                <h2 style="margin-top: 0;">Sambutan Kepala Sekolah</h2>
+                <p>Assalamu’alaikum Warahmatullahi Wabarakatuh,</p>
+                <p>Puji syukur kita panjatkan ke hadirat Allah SWT atas terbitnya website resmi SMPN 286 Jakarta. Website ini hadir sebagai media informasi dan komunikasi antara sekolah, orang tua, siswa, serta masyarakat luas.</p>
+                <p>Kami berharap melalui platform ini, segala kebaikan dan prestasi yang diraih oleh putra-putri kita dapat terdokumentasi dengan baik dan menjadi inspirasi bagi kita semua untuk terus memajukan kualitas pendidikan di Jakarta.</p>
+                <p>Terima kasih atas kunjungannya. Wassalamu’alaikum Warahmatullahi Wabarakatuh.</p>
+            </div>
+        </div>
+    </div>
+
     <div class="stats-container">
         <div class="stat-item">
             <h3>573</h3>
@@ -253,11 +186,13 @@
             <p>Rombel Kelas</p>
         </div>
     </div>
-        
+
     <div class="social-bar">
+        <p style="margin-bottom: 15px; font-weight: 600; color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 2px;">Follow Our Social Media</p>
         <a href="#"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-tiktok"></i></a>
         <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
     </div>
 
     <footer>
@@ -273,7 +208,7 @@
                 <p>Sabtu - Minggu: Tutup</p>
             </div>
         </div>
-        <hr style="opacity: 0.2; margin: 20px 0;">
+        <hr style="opacity: 0.1; margin: 20px 0;">
         <p style="text-align: center; font-size: 12px; opacity: 0.7;">© 2026 SMPN 286 Jakarta. All Rights Reserved.</p>
     </footer>
 
@@ -287,6 +222,3 @@
         }
         setInterval(autoSlide, 5000); // Ganti slide setiap 3 detik
     </script>
-
-</body>
-</html>
