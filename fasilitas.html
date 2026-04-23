@@ -6,7 +6,7 @@
     <title>Fasilitas - SMPN 286 Jakarta</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  
+    
     <style>
         :root {
             --navy: #000080;
@@ -67,11 +67,11 @@
             margin-right: 10px;
         }
 
-        /* CONTAINER & TITLE */
-        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        /* CONTAINER & TITLE CENTERED */
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; text-align: center; }
         
         .section-title {
-            color: var(--navy); font-size: 28px; font-weight: 700;
+            color: var(--navy); font-size: 32px; font-weight: 700;
             display: inline-block; position: relative;
             margin-bottom: 40px; padding-bottom: 8px;
         }
@@ -83,62 +83,53 @@
         /* INSTAGRAM GRID STYLE */
         .ig-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 Kolom seperti IG */
+            grid-template-columns: repeat(3, 1fr);
             gap: 15px;
+            margin-bottom: 50px;
         }
 
         .ig-item {
             position: relative;
-            aspect-ratio: 1 / 1; /* Biar kotak sempurna */
+            aspect-ratio: 1 / 1;
             overflow: hidden;
+            border-radius: 10px;
             cursor: pointer;
-            background-color: #eee;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .ig-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+            width: 100%; height: 100%; object-fit: cover;
+            transition: 0.5s ease;
         }
 
-        /* Hover Overlay */
         .ig-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            background: rgba(0, 0, 128, 0.6); /* Warna Navy Transparan */
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: 0.3s ease;
         }
 
         .ig-overlay span {
-            color: white;
-            font-weight: 600;
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 1px solid white;
-            padding: 5px 15px;
+            color: white; font-weight: 600; font-size: 16px;
+            border: 2px solid white; padding: 5px 15px;
         }
 
-        .ig-item:hover img {
-            transform: scale(1.1);
-        }
+        .ig-item:hover img { transform: scale(1.1); }
+        .ig-item:hover .ig-overlay { opacity: 1; }
 
-        .ig-item:hover .ig-overlay {
-            opacity: 1;
-        }
-
-        /* Mobile View: Jadi 2 kolom kalau layarnya kecil */
         @media (max-width: 768px) {
-            .ig-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-            .section-title { font-size: 24px; }
+            .ig-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        footer { background: #f9f9f9; color: #999; padding: 40px; text-align: center; margin-top: 60px; font-size: 13px; }
+        /* FOOTER FIXED */
+        footer { 
+            background: #000033; /* Biru Gelap sesuai halaman lain */
+            color: white; 
+            padding: 40px 10%; 
+            text-align: center; 
+            margin-top: 60px; 
+        }
     </style>
 </head>
 <body>
@@ -198,48 +189,28 @@
         
         <div class="ig-grid">
             <div class="ig-item">
-                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=500" alt="Ruang Kelas">
+                <img src="https://via.placeholder.com/500?text=Ruang+Kelas" alt="Kelas">
                 <div class="ig-overlay"><span>Ruang Kelas</span></div>
             </div>
-
             <div class="ig-item">
-                <img src="https://images.unsplash.com/photo-1547082299-de196ea013d6?w=500" alt="Lab Komputer">
+                <img src="https://via.placeholder.com/500?text=Lab+Komputer" alt="Lab Komp">
                 <div class="ig-overlay"><span>Lab Komputer</span></div>
             </div>
-
             <div class="ig-item">
-                <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=500" alt="Perpustakaan">
+                <img src="https://via.placeholder.com/500?text=Perpustakaan" alt="Perpus">
                 <div class="ig-overlay"><span>Perpustakaan</span></div>
             </div>
-
             <div class="ig-item">
-                <img src="https://images.unsplash.com/photo-1544919396-981883371e72?w=500" alt="Lapangan">
+                <img src="https://via.placeholder.com/500?text=Lapangan" alt="Lapangan">
                 <div class="ig-overlay"><span>Lapangan</span></div>
             </div>
-
             <div class="ig-item">
-                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=500" alt="Lab IPA">
+                <img src="https://via.placeholder.com/500?text=Lab+IPA" alt="Lab IPA">
                 <div class="ig-overlay"><span>Lab IPA</span></div>
             </div>
-
             <div class="ig-item">
-                <img src="https://images.unsplash.com/photo-1567529684892-09290a1b2d05?w=500" alt="Kantin">
+                <img src="https://via.placeholder.com/500?text=Kantin" alt="Kantin">
                 <div class="ig-overlay"><span>Kantin Sehat</span></div>
-            </div>
-
-            <div class="ig-item">
-                <img src="https://images.unsplash.com/photo-1591604021695-0c69b7c03081?w=500" alt="Musholla">
-                <div class="ig-overlay"><span>Musholla</span></div>
-            </div>
-
-            <div class="ig-item">
-                <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=500" alt="UKS">
-                <div class="ig-overlay"><span>Ruang UKS</span></div>
-            </div>
-
-            <div class="ig-item">
-                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=500" alt="Aula">
-                <div class="ig-overlay"><span>Aula Utama</span></div>
             </div>
         </div>
     </div>
