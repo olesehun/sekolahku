@@ -6,34 +6,65 @@
     <title>Pengumuman - SMPN 286 Jakarta</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
     <style>
-        :root { --navy: #000080; --light-bg: #f4f7f6; --text-dark: #333; }
-        body { margin: 0; font-family: 'Poppins', sans-serif; background-color: var(--light-bg); color: var(--text-dark); line-height: 1.6; }
+        :root {
+            --navy: #000080;
+            --light-bg: #f4f7f6;
+            --text-dark: #333;
+        }
 
-        /* HEADER & NAV - DISAMAKAN DENGAN HALAMAN LAIN */
-        nav { background: white; padding: 15px 10%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--navy); font-weight: bold; }
+        body {
+            margin: 0; font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg); color: var(--text-dark);
+            line-height: 1.6; scroll-behavior: smooth;
+        }
+
+        /* NAVIGATION */
+        nav {
+            background: white; padding: 15px 10%;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .logo { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--navy); font-weight: bold; }
         nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
-        nav ul li { margin-left: 25px; position: relative; }
+        nav ul li { position: relative; margin-left: 25px; }
         nav ul li a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.3s; }
-
-        /* DROPDOWN FIX - BIAR MENU INFORMASI & PROFIL MUNCUL */
+        
         .dropdown {
-            display: none; 
-            position: absolute; 
-            background: white;
-            min-width: 200px; 
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
-            top: 100%; 
-            left: 0; 
-            padding: 10px 0; 
-            border-radius: 0 0 5px 5px;
+            display: none; position: absolute; background: white;
+            min-width: 200px; box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            top: 100%; left: 0; padding: 10px 0; border-radius: 0 0 5px 5px;
         }
         nav ul li:hover .dropdown { display: block; }
-        .dropdown li { margin: 0; width: 100%; }
+        .dropdown li { margin: 0; width: 100%; position: relative; }
         .dropdown li a { padding: 10px 20px; font-size: 14px; display: block; }
         .dropdown li a:hover { background: var(--light-bg); }
+
+        /* Sub-menu samping untuk Peserta Didik */
+        .submenu-right {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 8px 8px 16px rgba(0,0,0,0.1);
+            list-style: none;
+            padding: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .dropdown li:hover .submenu-right { display: block; }
+
+        .has-inner:after {
+            content: ' \f105';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            float: right;
+            font-size: 12px;
+            margin-right: 10px;
+        }
 
         /* KONTEN PENGUMUMAN */
         .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
@@ -141,8 +172,19 @@
     </div>
 
     <footer>
-        <p>© 2026 SMPN 286 Jakarta. All Rights Reserved.</p>
+        <div class="footer-grid">
+            <div class="footer-item">
+                <h3>Hubungi Kami</h3>
+                <p>📍 Grogol Petamburan, Jakarta Barat</p>
+                <p>📞 0822-2222-2222</p>
+            </div>
+            <div class="footer-item">
+                <h3>Jam Sekolah</h3>
+                <p>Senin - Jumat: 06:30 - 15:00</p>
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 12px; margin-top: 20px; opacity: 0.6;">© 2026 SMPN 286 Jakarta</p>
     </footer>
-
+    
 </body>
 </html>
