@@ -22,73 +22,75 @@
 
         /* NAVIGATION */
         nav {
-            background: white; padding: 15px 10%;
+            background: white; padding: 15px 5%;
             display: flex; justify-content: space-between; align-items: center;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             position: sticky; top: 0; z-index: 1000;
         }
 
-        .logo { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--navy); font-weight: bold; }
+        .logo { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 18px; 
+            color: var(--navy); 
+            font-weight: bold; 
+            line-height: 1.2;
+        }
+
         nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
-        nav ul li { position: relative; margin-left: 25px; }
-        nav ul li a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.3s; }
+        nav ul li { position: relative; margin-left: 20px; }
+        nav ul li a { text-decoration: none; color: var(--text-dark); font-weight: 500; font-size: 14px; transition: 0.3s; }
+        nav ul li a:hover { color: var(--navy); }
         
         .dropdown {
             display: none; position: absolute; background: white;
-            min-width: 200px; box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            min-width: 180px; box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
             top: 100%; left: 0; padding: 10px 0; border-radius: 0 0 5px 5px;
         }
         nav ul li:hover .dropdown { display: block; }
-        .dropdown li { margin: 0; width: 100%; position: relative; }
-        .dropdown li a { padding: 10px 20px; font-size: 14px; display: block; }
-        .dropdown li a:hover { background: var(--light-bg); }
-
-        .submenu-right {
-            display: none; position: absolute; left: 100%; top: 0;
-            background: white; min-width: 200px; box-shadow: 8px 8px 16px rgba(0,0,0,0.1);
-            list-style: none; padding: 10px 0; border-radius: 0 5px 5px 0;
-        }
-        .dropdown li:hover .submenu-right { display: block; }
-
-        .has-inner:after {
-            content: ' \f105'; font-family: 'Font Awesome 6 Free';
-            font-weight: 900; float: right; font-size: 12px; margin-right: 10px;
-        }
+        .dropdown li { margin: 0; width: 100%; }
+        .dropdown li a { padding: 10px 20px; display: block; }
 
         /* SECTIONS */
-        .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; text-align: center; }
+        .container { max-width: 1100px; margin: 50px auto; padding: 0 20px; text-align: center; }
         .section-title { color: var(--navy); border-bottom: 3px solid var(--navy); display: inline-block; padding-bottom: 5px; margin-bottom: 40px; }
 
         /* ORG SELECTOR */
-        .org-selector { display: flex; justify-content: center; gap: 50px; margin-bottom: 50px; }
-        .org-logo-btn { cursor: pointer; transition: 0.3s; padding: 20px; background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); width: 180px; }
+        .org-selector { display: flex; justify-content: center; gap: 30px; margin-bottom: 50px; }
+        .org-logo-btn { cursor: pointer; transition: 0.3s; padding: 20px; background: white; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); width: 160px; }
         .org-logo-btn:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
         .org-logo-btn i { font-size: 40px; color: var(--navy); display: block; margin-bottom: 10px; }
-        .org-logo-btn span { font-weight: 600; color: var(--navy); }
+        .org-logo-btn span { font-weight: 600; color: var(--navy); font-size: 14px; }
 
         /* CONTENT */
-        .org-content { display: none; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; animation: fadeIn 0.5s; margin-top: 20px; }
+        .org-content { display: none; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); animation: fadeIn 0.5s; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* GRID LOGIC */
+        .leader-row { width: 100%; display: flex; justify-content: center; margin-bottom: 30px; }
         .org-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 30px; }
-        .member-card { flex: 1; min-width: 220px; max-width: 250px; background: #f9f9f9; padding: 20px; border-radius: 10px; border-top: 4px solid var(--navy); }
-        .member-card i { font-size: 40px; color: var(--navy); margin-bottom: 10px; }
-        .member-card h3 { font-size: 16px; margin: 10px 0 5px; }
-        .member-card p { font-size: 13px; font-weight: 600; color: #666; }
+        
+        .member-card { 
+            flex: 1; min-width: 220px; max-width: 280px; 
+            background: #fcfcfc; padding: 25px; border-radius: 12px; 
+            border-top: 5px solid var(--navy); box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+        .member-card i { font-size: 45px; color: var(--navy); margin-bottom: 15px; }
+        .member-card h3 { font-size: 17px; margin: 10px 0 5px; color: #222; }
+        .member-card p { font-size: 13px; font-weight: 600; color: #666; text-transform: uppercase; letter-spacing: 1px; }
 
         /* ACCORDION */
-        .accordion-item { margin-top: 20px; text-align: left; }
+        .accordion-item { margin-top: 30px; text-align: left; }
         .accordion-header { background: var(--navy); color: white; padding: 15px 20px; border-radius: 8px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-        .accordion-content { display: none; padding: 20px; background: #fff; border: 1px solid #ddd; border-radius: 0 0 8px 8px; }
+        .accordion-content { display: none; padding: 20px; background: #fff; border: 1px solid #eee; border-radius: 0 0 8px 8px; }
         
-        .staff-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
-        .staff-name { display: flex; align-items: center; gap: 15px; padding: 10px; border-bottom: 1px solid #eee; }
-        .staff-info strong { display: block; font-size: 14px; }
-        .teacher-subject { font-size: 12px; color: #777; }
-        .status-badge { font-size: 10px; background: #28a745; color: white; padding: 2px 8px; border-radius: 10px; margin-left: 5px; }
+        .staff-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
+        .staff-name { display: flex; align-items: center; gap: 15px; padding: 12px; border-bottom: 1px solid #f0f0f0; }
+        .staff-info strong { display: block; font-size: 14px; color: #333; }
+        .teacher-subject { font-size: 12px; color: #888; }
+        .status-badge { font-size: 10px; background: #2ecc71; color: white; padding: 2px 8px; border-radius: 4px; margin-left: 5px; }
 
-        footer { background: #000033; color: white; padding: 40px 10%; margin-top: 50px; text-align: center; }
-        .footer-grid { display: flex; justify-content: space-around; flex-wrap: wrap; text-align: left; }
+        footer { background: #000033; color: white; padding: 40px 10%; margin-top: 60px; text-align: center; }
+        .footer-grid { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px; text-align: left; }
     </style>
 </head>
 <body>
@@ -103,15 +105,50 @@
                     <li><a href="tentang.html">Tentang Sekolah</a></li>
                     <li><a href="visi.html">Visi Misi</a></li>
                     <li><a href="struktur.html">Struktur Organisasi</a></li>
+                    <li><a href="prestasi.html">Prestasi</a></li>
+                    <li><a href="fasilitas.html">Fasilitas</a></li>
+                    <li><a href="organisasi.html">Organisasi Siswa</a></li>
                 </ul>
             </li>
-            <li><a href="kalender.html">Kalender</a></li>
+            <li><a href="kalender.html">Kalender Pendidikan</a></li>
+            <li class="has-submenu">
+                <a href="#">Kegiatan</a>
+                <ul class="dropdown">
+                    <li><a href="kegiatan-guru.html">Guru & Karyawan</a></li>
+                    <li class="has-inner">
+                        <a href="#">Peserta Didik</a>
+                        <ul class="submenu-right">
+                            <li><a href="#">Pembiasaan</a></li>
+                            <li><a href="organisasi.html">Organisasi</a></li>
+                            <li><a href="#">Ekskul</a></li>
+                            <li><a href="#">Komunitas</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="has-submenu">
+                <a href="#">Informasi</a>
+                <ul class="dropdown">
+                    <li><a href="pengumuman.html">Pengumuman</a></li>
+                    <li><a href="ujian.html">Jadwal Ujian</a></li>
+                    <li><a href="pelajaran.html">Jadwal Pelajaran</a></li>
+                    <li><a href="perlombaan.html">Perlombaan</a></li>
+                </ul>
+            </li>
+            <li class="has-submenu">
+                <a href="#">Pendaftaran</a>
+                <ul class="dropdown">
+                    <li><a href="alur.html">Alur Pendaftaran</a></li>
+                    <li><a href="#">PPDB</a></li>
+                    <li><a href="#">Mutasi</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
 
     <div class="container">
         <h2 class="section-title">Struktur Organisasi</h2>
-        <p>Silakan pilih kategori di bawah ini untuk melihat detail struktural:</p>
+        <p>Pilih kategori untuk melihat detail data tenaga pendidik dan kependidikan</p>
 
         <div class="org-selector">
             <div class="org-logo-btn" onclick="showOrg('pendidik')">
@@ -125,46 +162,50 @@
         </div>
 
         <div id="pendidik" class="org-content">
-            <h3 style="color: var(--navy); margin-bottom: 25px;">Struktur Pimpinan</h3>
-            <div class="org-grid">
+            <h3 style="color: var(--navy); margin-bottom: 30px;">Struktur Pimpinan</h3>
+            
+            <div class="leader-row">
                 <div class="member-card">
                     <i class="fas fa-user-tie"></i>
                     <h3>Suho, M.Pd</h3>
-                    <p>KEPALA SEKOLAH</p>
+                    <p>Kepala Sekolah</p>
                 </div>
+            </div>
+
+            <div class="org-grid">
                 <div class="member-card">
                     <i class="fas fa-user-graduate"></i>
                     <h3>Kyungsoo, S.Pd</h3>
-                    <p>PKS KESISWAAN</p>
+                    <p>PKS Kesiswaan</p>
                 </div>
                 <div class="member-card">
                     <i class="fas fa-book-open"></i>
                     <h3>Kai, M.Pd</h3>
-                    <p>PKS KURIKULUM</p>
+                    <p>PKS Kurikulum</p>
                 </div>
                 <div class="member-card">
                     <i class="fas fa-tools"></i>
                     <h3>Sehun, M.Pd</h3>
-                    <p>PKS SARPRAS</p>
+                    <p>PKS Sarpras</p>
                 </div>
             </div>
 
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion('guru-list', this)">
-                    <span><i class="fas fa-list-ul" style="margin-right: 10px;"></i> Daftar Guru Pengajar</span>
+                    <span><i class="fas fa-chalkboard-teacher" style="margin-right: 10px;"></i> Daftar Guru Pengajar</span>
                     <i class="fas fa-chevron-down arrow"></i>
                 </div>
                 <div id="guru-list" class="accordion-content">
                     <div class="staff-list">
                         <div class="staff-name">
-                            <i class="fas fa-user-circle"></i>
+                            <i class="fas fa-user-circle" style="font-size: 24px; color: #ccc;"></i>
                             <div class="staff-info">
                                 <strong>Baekhyun, S.Pd</strong>
                                 <span class="teacher-subject">Bahasa Indonesia</span> <span class="status-badge">AKTIF</span>
                             </div>
                         </div>
                         <div class="staff-name">
-                            <i class="fas fa-user-circle"></i>
+                            <i class="fas fa-user-circle" style="font-size: 24px; color: #ccc;"></i>
                             <div class="staff-info">
                                 <strong>Chen, M.Pd</strong>
                                 <span class="teacher-subject">Seni Budaya</span> <span class="status-badge">AKTIF</span>
@@ -176,12 +217,12 @@
         </div>
 
         <div id="kependidikan" class="org-content">
-            <h3 style="color: var(--navy); margin-bottom: 25px;">Pimpinan Tata Usaha</h3>
-            <div class="org-grid">
+            <h3 style="color: var(--navy); margin-bottom: 30px;">Kepala Tata Usaha</h3>
+            <div class="leader-row">
                 <div class="member-card">
                     <i class="fas fa-file-invoice"></i>
                     <h3>Chanyeol, S.E</h3>
-                    <p>KEPALA TATA USAHA</p>
+                    <p>Kepala Tata Usaha</p>
                 </div>
             </div>
 
@@ -230,17 +271,13 @@
     </footer>
 
     <script>
-        // Fungsi untuk berpindah tab kategori
         function showOrg(category) {
-            // Sembunyikan semua konten
             document.querySelectorAll('.org-content').forEach(content => {
                 content.style.display = 'none';
             });
-            // Tampilkan kategori yang dipilih
             document.getElementById(category).style.display = 'block';
         }
 
-        // Fungsi untuk accordion (Daftar Guru/Staff)
         function toggleAccordion(id, header) {
             const content = document.getElementById(id);
             const arrow = header.querySelector('.arrow');
