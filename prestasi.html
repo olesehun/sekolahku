@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prestasi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Prestasi - SMPN 286 Jakarta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
@@ -67,69 +67,76 @@
             margin-right: 10px;
         }
 
-        /* SLIDER BERITA */
-        .slider-container {
-            position: relative; width: 100%; height: 500px;
-            overflow: hidden; background: #000;
-        }
-        .slides { display: flex; width: 300%; height: 100%; transition: 0.8s ease-in-out; }
-        .slide {
-            width: 33.333%; height: 100%; position: relative;
-            background-size: cover; background-position: center;
-        }
-        .slide-content {
-            position: absolute; bottom: 50px; left: 10%;
-            color: white; background: rgba(0, 0, 128, 0.7);
-            padding: 20px; border-radius: 10px; max-width: 500px;
-        }
-
-        /* CONTAINER & SECTION */
+        /* CONTAINER & TITLE (KONSISTEN) */
         .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
-        .section { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .section h2 { color: var(--navy); border-bottom: 3px solid var(--navy); display: inline-block; padding-bottom: 5px; margin-bottom: 20px; }
+        
+        .section-title {
+            color: var(--navy); font-size: 32px; font-weight: 700;
+            display: inline-block; position: relative;
+            margin-bottom: 30px; padding-bottom: 8px;
+        }
+        .section-title::after {
+            content: ''; position: absolute; left: 0; bottom: 0;
+            width: 100%; height: 3px; background-color: var(--navy);
+        }
 
         /* PRESTASI GRID */
-        .kegiatan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .prestasi-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 25px; 
+        }
         
-        .card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); }
-        .card img { width: 100%; height: 180px; object-fit: cover; }
-        .card-content { padding: 15px; }
-        .card-content h4 { margin: 0; color: var(--navy); }
+        .card { 
+            background: white; border-radius: 15px; overflow: hidden; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+            cursor: pointer; transition: 0.3s; 
+            border-bottom: 4px solid transparent;
+        }
+        .card:hover { transform: translateY(-8px); border-bottom: 4px solid var(--navy); }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-content { padding: 20px; }
+        .card-content h4 { margin: 0; color: var(--navy); font-size: 18px; }
+        .card-content p { font-size: 13px; color: #777; margin-top: 10px; }
 
-        /* DETAIL AREA (POP-UP KE BAWAH) */
-        .kegiatan-detail {
-            display: none; grid-column: 1 / -1; 
+        /* DETAIL AREA (POP-UP) */
+        .prestasi-detail {
+            display: none; 
+            grid-column: 1 / -1; 
             background: #fff; border-radius: 15px; 
-            margin-top: 20px; border: 1px solid #ddd;
+            margin-top: 20px; border: 1px solid #eee;
             overflow: hidden; animation: fadeIn 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* SLIDER FOTO DI ATAS */
         .detail-slider {
             display: flex; overflow-x: auto; 
             scroll-snap-type: x mandatory;
-            background: #000; height: 400px; /* Foto jadi besar */
+            background: #000; height: 450px;
+            scrollbar-width: none;
         }
+        .detail-slider::-webkit-scrollbar { display: none; }
 
         .detail-slider img {
             width: 100%; height: 100%; 
-            object-fit: contain; /* Biar foto asli ga kepotong */
+            object-fit: cover;
             flex-shrink: 0; scroll-snap-align: start;
         }
 
-        /* TULISAN DI BAWAH FOTO */
-        .detail-text { padding: 30px; text-align: center; }
-        .detail-text h3 { color: var(--navy); margin-top: 0; }
-        .detail-text p { color: #555; max-width: 800px; margin: 0 auto; }
+        .detail-text { padding: 40px; text-align: center; }
+        .detail-text h3 { color: var(--navy); margin-top: 0; font-size: 24px; }
+        .detail-text p { color: #555; max-width: 850px; margin: 15px auto 0; font-size: 16px; }
 
-        /* Custom Scrollbar untuk Slider */
-        .detail-slider::-webkit-scrollbar { height: 8px; }
-        .detail-slider::-webkit-scrollbar-thumb { background: var(--navy); border-radius: 10px; }
+        .close-btn {
+            background: #eee; border: none; padding: 10px 20px; 
+            border-radius: 5px; cursor: pointer; margin-top: 20px;
+            font-weight: 600; color: #555; transition: 0.3s;
+        }
+        .close-btn:hover { background: #ddd; color: #222; }
 
-        footer { background: #000033; color: white; padding: 30px; text-align: center; margin-top: 50px; }
+        footer { background: #000033; color: white; padding: 40px 10%; margin-top: 80px; text-align: center; }
     </style>
 </head>
 <body>
@@ -138,97 +145,58 @@
         <div class="logo">SMP NEGERI 286 JAKARTA</div>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li class="has-submenu">
-                <a href="#">Profil Sekolah</a>
-                <ul class="dropdown">
-                    <li><a href="tentang.html">Tentang Sekolah</a></li>
-                    <li><a href="visi.html">Visi Misi</a></li>
-                    <li><a href="struktur.html">Struktur Organisasi</a></li>
-                    <li><a href="prestasi.html">Prestasi</a></li>
-                    <li><a href="fasilitas.html">Fasilitas</a></li>
-                    <li><a href="organisasi.html">Organisasi Siswa</a></li>
-                </ul>
-            </li>
-            <li><a href="kalender.html">Kalender Pendidikan</a></li>
-            <li class="has-submenu">
-                <a href="#">Kegiatan</a>
-                <ul class="dropdown">
-                    <li><a href="kegiatan-guru.html">Guru & Karyawan</a></li>
-                    <li class="has-inner">
-                        <a href="#">Peserta Didik</a>
-                        <ul class="submenu-right">
-                            <li><a href="#">Pembiasaan</a></li>
-                            <li><a href="organisasi.html">Organisasi</a></li>
-                            <li><a href="#">Ekskul</a></li>
-                            <li><a href="#">Komunitas</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li class="has-submenu">
-                <a href="#">Informasi</a>
-                <ul class="dropdown">
-                    <li><a href="pengumuman.html">Pengumuman</a></li>
-                    <li><a href="ujian.html">Jadwal Ujian</a></li>
-                    <li><a href="perlombaan.html">Perlombaan</a></li>
-                </ul>
-            </li>
-            <li class="has-submenu">
-                <a href="#">Pendaftaran</a>
-                <ul class="dropdown">
-                    <li><a href="alur.html">Alur Pendaftaran</a></li>
-                    <li><a href="#">PPDB</a></li>
-                    <li><a href="#">Mutasi</a></li>
-                </ul>
-            </li>
+            <li><a href="tentang.html">Tentang Sekolah</a></li>
+            <li><a href="visi.html">Visi Misi</a></li>
+            <li><a href="prestasi.html">Prestasi</a></li>
         </ul>
     </nav>
-    
+
     <div class="container">
-        <section class="section" id="prestasi">
-            <h2>Prestasi</h2>
-            
-            <div class="prestasi-grid">
-                <div class="card" onclick="toggleDetail('detail1')">
-                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=500" alt="Workshop">
-                    <div class="card-content">
-                        <h4>Juara I Pramuka</h4>
-                        <p>Klik untuk detail...</p>
-                    </div>
-                </div>
-                
-                <div class="card" onclick="toggleDetail('detail2')">
-                    <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=500" alt="Rapat">
-                    <div class="card-content">
-                        <h4>Juara Sekolah Terbersih</h4>
-                        <p>Klik untuk detail...</p>
-                    </div>
-                </div>
-
-                <div id="detail1" class="prestasi-detail">
-                    <div class="detail-slider">
-                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1000">
-                        <img src="https://images.unsplash.com/photo-1524178232363-1fb28f74b671?w=1000">
-                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1000">
-                    </div>
-                    <div class="detail-text">
-                        <h3>Juara I Pramuka se-Jakarta Raya</h3>
-                        <p>Kegiatan peningkatan kompetensi bapak/ibu guru dalam memanfaatkan teknologi digital untuk proses belajar mengajar yang lebih interaktif di SMPN 286 Jakarta.</p>
-                    </div>
-                </div>
-
-                <div id="detail2" class="prestasi-detail">
-                    <div class="detail-slider">
-                        <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=1000">
-                        <img src="https://images.unsplash.com/photo-1454165833762-0265129b0021?w=1000">
-                    </div>
-                    <div class="detail-text">
-                        <h3>Juara Sekolah Terbersih Se-Jakarta Raya</h3>
-                        <p>Proses pendataan kembali seluruh aset sekolah (KIB B dan KIB E) untuk memastikan laporan inventaris sekolah akurat dan transparan sesuai standar Dinas Pendidikan.</p>
-                    </div>
+        <h2 class="section-title">Prestasi Sekolah</h2>
+        
+        <div class="prestasi-grid">
+            <div class="card" onclick="toggleDetail('detail1')">
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800" alt="Juara Pramuka">
+                <div class="card-content">
+                    <h4>Juara I Lomba Pramuka</h4>
+                    <p>Tingkat Provinsi DKI Jakarta - 2025</p>
+                    <p style="color: var(--navy); font-weight: 600;">Lihat Detail <i class="fas fa-arrow-right"></i></p>
                 </div>
             </div>
-        </section>
+            
+            <div class="card" onclick="toggleDetail('detail2')">
+                <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800" alt="Sekolah Terbersih">
+                <div class="card-content">
+                    <h4>Juara Sekolah Terbersih</h4>
+                    <p>Penghargaan Lingkungan Hidup se-Jakarta Raya</p>
+                    <p style="color: var(--navy); font-weight: 600;">Lihat Detail <i class="fas fa-arrow-right"></i></p>
+                </div>
+            </div>
+
+            <div id="detail1" class="prestasi-detail">
+                <div class="detail-slider">
+                    <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=1200">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb28f74b671?w=1200">
+                </div>
+                <div class="detail-text">
+                    <h3>Detail Juara I Pramuka</h3>
+                    <p>Tim Pramuka SMPN 286 Jakarta berhasil menyabet gelar Juara Umum pada ajang Lomba Tingkat Provinsi. Keberhasilan ini diraih berkat kedisiplinan dan kerjasama tim yang luar biasa selama masa pelatihan intensif.</p>
+                    <button class="close-btn" onclick="closeAll()">Tutup Detail</button>
+                </div>
+            </div>
+
+            <div id="detail2" class="prestasi-detail">
+                <div class="detail-slider">
+                    <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=1200">
+                    <img src="https://images.unsplash.com/photo-1454165833762-0265129b0021?w=1200">
+                </div>
+                <div class="detail-text">
+                    <h3>Detail Sekolah Terbersih</h3>
+                    <p>Komitmen seluruh warga sekolah dalam menjaga kebersihan lingkungan membuahkan hasil. SMPN 286 terpilih sebagai sekolah percontohan dalam pengelolaan sampah dan penghijauan area sekolah di wilayah Jakarta Barat.</p>
+                    <button class="close-btn" onclick="closeAll()">Tutup Detail</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer>
@@ -247,23 +215,28 @@
         <hr style="opacity: 0.1; margin: 20px 0;">
         <p style="text-align: center; font-size: 12px; opacity: 0.7;">© 2026 SMPN 286 Jakarta. All Rights Reserved.</p>
     </footer>
-    
-<script>
+
+    <script>
         function toggleDetail(detailId) {
-            const allDetails = document.querySelectorAll('.kegiatan-detail');
             const target = document.getElementById(detailId);
-            
-            // Cek apakah yang diklik sudah terbuka
-            const isAlreadyOpen = (target.style.display === 'block');
+            const isOpen = (target.style.display === 'block');
 
-            // Tutup semua dulu
-            allDetails.forEach(d => d.style.display = 'none');
+            // Sembunyikan semua detail dulu
+            closeAll();
 
-            // Kalau sebelumnya tertutup, sekarang buka
-            if (!isAlreadyOpen) {
+            // Kalau sebelumnya tidak terbuka, buka sekarang
+            if (!isOpen) {
                 target.style.display = 'block';
-                target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                // Scroll halus ke arah detail yang terbuka
+                setTimeout(() => {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
             }
+        }
+
+        function closeAll() {
+            const allDetails = document.querySelectorAll('.prestasi-detail');
+            allDetails.forEach(d => d.style.display = 'none');
         }
     </script>
 </body>
