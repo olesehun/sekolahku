@@ -158,29 +158,49 @@
             const downloadBtn = document.getElementById('lb-download');
             
             img.src = src;
-            img.classList.remove('zoomed'); // Pastikan mulai dari ukuran kecil
+            img.classList.remove('zoomed'); // Mulai dari ukuran normal
             
-            // Setting download agar langsung unduh
-            downloadBtn.href = src;
-            downloadBtn.download = title + ".jpg";
-
+            // Fungsi maksa download pakai Blob biar anti-gagal
+            downloadBtn.onclick = function(e) {
+                e.preventDefault();
+                downloadFile(src, title);
+            };
+    
             lb.style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Kunci scroll halaman utama
+            document.body.style.overflow = 'hidden'; // Kunci scroll layar utama
         }
-
+    
+        // Fungsi khusus untuk ambil file gambar dan paksa unduh
+        async function downloadFile(imageSrc, title) {
+            try {
+                const response = await fetch(imageSrc);
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = title + ".jpg"; 
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+            } catch (error) {
+                // Backup jika server gambar melarang download otomatis
+                window.open(imageSrc, '_blank');
+            }
+        }
+    
         function closeLightbox() {
             const lb = document.getElementById('lightbox');
             lb.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Aktifkan scroll balik
+            document.body.style.overflow = 'auto'; 
         }
-
-        // FUNGSI ZOOM KLIK FOTO
+    
         function toggleZoom() {
             const img = document.getElementById('lb-img');
             img.classList.toggle('zoomed');
         }
-
-        // Close jika klik di area background hitam
+    
+        // Klik area hitam atau wrapper untuk tutup
         window.onclick = function(event) {
             const lb = document.getElementById('lightbox');
             const wrapper = document.querySelector('.img-wrapper');
@@ -189,5 +209,6 @@
             }
         }
     </script>
+    
 </body>
 </html>
