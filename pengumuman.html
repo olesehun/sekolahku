@@ -210,27 +210,25 @@
         <p style="text-align: center; font-size: 12px; opacity: 0.7;">© 2026 SMPN 286 Jakarta. All Rights Reserved.</p>
     </footer>
 
-    <script>
-        // Fungsi untuk membuka pop-up
-        function bukaPengumuman(judul, isi) {
-            document.getElementById('modalTitle').innerText = judul;
-            document.getElementById('modalFullBody').innerText = isi;
-            document.getElementById('modalPengumuman').style.display = 'flex';
-        }
+<script>
+    function bukaPengumuman(judul, isi) {
+        document.getElementById('modalTitle').innerText = judul;
+        // GANTI .innerText JADI .innerHTML supaya link-nya aktif
+        document.getElementById('modalFullBody').innerHTML = isi; 
+        document.getElementById('modalPengumuman').style.display = 'flex';
+    }
 
-        // Fungsi untuk menutup pop-up
-        function tutupPengumuman() {
-            document.getElementById('modalPengumuman').style.display = 'none';
-        }
+    function tutupPengumuman() {
+        document.getElementById('modalPengumuman').style.display = 'none';
+    }
 
-        // Menutup pop-up jika klik di area hitam (luar kotak)
-        window.onclick = function(event) {
-            let modal = document.getElementById('modalPengumuman');
-            if (event.target == modal) {
-                tutupPengumuman();
-            }
+    window.onclick = function(event) {
+        let modal = document.getElementById('modalPengumuman');
+        if (event.target == modal) {
+            tutupPengumuman();
         }
-    </script>
+    }
+</script>
     
 </body>
 </html>
