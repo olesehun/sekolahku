@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPMB - SMPN 286 Jakarta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --navy: #000080;
+            --light-bg: #f4f7f6;
+            --text-dark: #333;
+        }
+
+        body {
+            margin: 0; font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg); color: var(--text-dark);
+            line-height: 1.6; scroll-behavior: smooth;
+        }
+
+        /* NAVIGATION */
+        nav {
+            background: white; padding: 15px 10%;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .logo { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--navy); font-weight: bold; }
+        nav ul { list-style: none; display: flex; margin: 0; padding: 0; }
+        nav ul li { position: relative; margin-left: 25px; }
+        nav ul li a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: 0.3s; }
+        
+        .dropdown {
+            display: none; position: absolute; background: white;
+            min-width: 200px; box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+            top: 100%; left: 0; padding: 10px 0; border-radius: 0 0 5px 5px;
+        }
+        nav ul li:hover .dropdown { display: block; }
+        .dropdown li { margin: 0; width: 100%; position: relative; }
+        .dropdown li a { padding: 10px 20px; font-size: 14px; display: block; }
+        .dropdown li a:hover { background: var(--light-bg); }
+
+        /* Sub-menu samping untuk Peserta Didik */
+        .submenu-right {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: white;
+            min-width: 200px;
+            box-shadow: 8px 8px 16px rgba(0,0,0,0.1);
+            list-style: none;
+            padding: 10px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        .dropdown li:hover .submenu-right { display: block; }
+
+        .has-inner:after {
+            content: ' \f105';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            float: right;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+
+        /* HERO SECTION */
+        .hero-spmb {
+            background: linear-gradient(rgba(0,0,128,0.8), rgba(0,0,128,0.8)), url('https://images.unsplash.com/photo-1523050853064-8504f2f40fd5?w=1200');
+            background-size: cover; background-position: center;
+            color: white; padding: 60px 10%; text-align: center;
+        }
+
+        /* TAB SYSTEM */
+        .spmb-container { max-width: 1100px; margin: -40px auto 50px; padding: 0 20px; }
+        
+        .tab-menu {
+            display: flex; background: white; border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden;
+            margin-bottom: 30px; flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            flex: 1; padding: 20px; border: none; background: white;
+            cursor: pointer; font-weight: 600; color: #666;
+            transition: 0.3s; border-bottom: 4px solid transparent;
+            display: flex; flex-direction: column; align-items: center; gap: 8px;
+            min-width: 120px;
+        }
+
+        .tab-btn i { font-size: 20px; }
+        .tab-btn.active { color: var(--navy); border-bottom: 4px solid var(--navy); background: #f9f9f9; }
+        .tab-btn:hover { background: #f0f0f0; }
+
+        /* CONTENT AREA */
+        .tab-content {
+            background: white; padding: 40px; border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); min-height: 400px;
+            display: none; animation: fadeIn 0.5s;
+        }
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        h3 { color: var(--navy); margin-top: 0; border-left: 5px solid var(--accent); padding-left: 15px; }
+
+        /* KHUSUS ALUR (Step-by-step) */
+        .step-list { list-style: none; padding: 0; }
+        .step-item { display: flex; gap: 20px; margin-bottom: 20px; }
+        .step-num { 
+            background: var(--navy); color: white; width: 35px; height: 35px; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; font-weight: bold;
+        }
+
+        /* TABLE JADWAL */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        table th, table td { padding: 15px; border: 1px solid #eee; text-align: left; }
+        table th { background: var(--navy); color: white; }
+
+        /* DOKUMEN LINK */
+        .doc-link {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px; border: 1px solid #ddd; border-radius: 8px;
+            margin-bottom: 10px; text-decoration: none; color: var(--text-dark);
+            transition: 0.3s;
+        }
+        .doc-link:hover { background: var(--light-bg); border-color: var(--navy); }
+        .doc-link i { color: var(--navy); font-size: 20px; }
+
+        footer { background: #000033; color: white; padding: 40px 10%; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">SMP NEGERI 286 JAKARTA</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li class="has-submenu">
+                <a href="#">Profil Sekolah</a>
+                <ul class="dropdown">
+                    <li><a href="tentang.html">Tentang Sekolah</a></li>
+                    <li><a href="visi.html">Visi Misi</a></li>
+                    <li><a href="struktur.html">Struktur Organisasi</a></li>
+                    <li><a href="prestasi.html">Prestasi</a></li>
+                    <li><a href="fasilitas.html">Fasilitas</a></li>
+                </ul>
+            </li>
+            <li><a href="kalender.html">Kalender Pendidikan</a></li>
+            <li class="has-submenu">
+                <a href="#">Kegiatan</a>
+                <ul class="dropdown">
+                    <li><a href="kegiatan-guru.html">Guru & Karyawan</a></li>
+                    <li class="has-inner">
+                        <a href="#">Peserta Didik</a>
+                        <ul class="submenu-right">
+                            <li><a href="pembiasaan.html">Pembiasaan</a></li>
+                            <li><a href="organisasi.html">Organisasi</a></li>
+                            <li><a href="ekskul.html">Ekstra Kulikuler</a></li>
+                            <li><a href="komunitas.html">Komunitas</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="has-submenu">
+                <a href="#">Informasi</a>
+                <ul class="dropdown">
+                    <li><a href="pengumuman.html">Pengumuman</a></li>
+                    <li><a href="ujian.html">Jadwal Ujian</a></li>
+                    <li><a href="perlombaan.html">Perlombaan</a></li>
+                </ul>
+            </li>
+            <li class="has-submenu">
+                <a href="#">Pendaftaran</a>
+                <ul class="dropdown">
+                    <li><a href="spmb.html">SPMB</a></li>
+                    <li><a href="mutasi.html">Mutasi</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="hero-spmb">
+        <h1>SPMB TA 2026/2027</h1>
+        <p>Sistem Penerimaan Murid Baru Terpadu SMPN 286 Jakarta</p>
+    </div>
+
+    <div class="spmb-container">
+        <div class="tab-menu">
+            <button class="tab-btn active" onclick="openTab(event, 'mekanisme')">
+                <i class="fas fa-cogs"></i> Mekanisme
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'jadwal')">
+                <i class="fas fa-calendar-alt"></i> Jadwal
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'alur')">
+                <i class="fas fa-route"></i> Alur
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'kanal')">
+                <i class="fas fa-headset"></i> Kanal Informasi
+            </button>
+            <button class="tab-btn" onclick="openTab(event, 'dokumen')">
+                <i class="fas fa-file-pdf"></i> Dokumen
+            </button>
+        </div>
+
+        <div id="mekanisme" class="tab-content active">
+            <h3>Mekanisme Pendaftaran</h3>
+            <p>Penerimaan murid baru dilaksanakan secara objektif, transparan, dan akuntabel melalui beberapa jalur:</p>
+            <ul>
+                <li><strong>Jalur Zonasi:</strong> Diperuntukkan bagi calon murid yang berdomisili di dalam wilayah zonasi yang ditetapkan.</li>
+                <li><strong>Jalur Afirmasi:</strong> Diperuntukkan bagi murid dari keluarga ekonomi tidak mampu dan anak penyandang disabilitas.</li>
+                <li><strong>Jalur Prestasi:</strong> Menggunakan nilai rapor dan sertifikat kejuaraan akademik/non-akademik.</li>
+                <li><strong>Jalur Perpindahan Orang Tua:</strong> Bagi calon murid yang mengikuti perpindahan tugas orang tua/wali.</li>
+            </ul>
+        </div>
+
+        <div id="jadwal" class="tab-content">
+            <h3>Jadwal Pelaksanaan</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kegiatan</th>
+                        <th>Tanggal Pelaksanaan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Sosialisasi PPDB</td>
+                        <td>10 - 20 Mei 2026</td>
+                    </tr>
+                    <tr>
+                        <td>Pendaftaran Online</td>
+                        <td>1 - 15 Juni 2026</td>
+                    </tr>
+                    <tr>
+                        <td>Verifikasi Dokumen</td>
+                        <td>2 - 16 Juni 2026</td>
+                    </tr>
+                    <tr>
+                        <td>Pengumuman Hasil</td>
+                        <td>20 Juni 2026</td>
+                    </tr>
+                    <tr>
+                        <td>Lapor Diri / Daftar Ulang</td>
+                        <td>22 - 24 Juni 2026</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="alur" class="tab-content">
+            <h3>Alur Pendaftaran Online</h3>
+            <div class="step-list">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div><strong>Pra-Pendaftaran:</strong> Menyiapkan berkas scan (KK, Akta, Ijazah).</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div><strong>Registrasi:</strong> Membuat akun di web resmi PPDB Jakarta.</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div><strong>Pemilihan Sekolah:</strong> Memilih SMPN 286 Jakarta sebagai pilihan utama.</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-num">4</div>
+                    <div><strong>Pantau Hasil:</strong> Memantau posisi seleksi secara real-time di web.</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="kanal" class="tab-content">
+            <h3>Kanal Informasi & Bantuan</h3>
+            <p>Jika mengalami kendala teknis, silakan hubungi layanan bantuan kami:</p>
+            <div class="doc-link">
+                <span><i class="fab fa-whatsapp"></i> WhatsApp Helpdesk</span>
+                <span>0822-xxxx-xxxx</span>
+            </div>
+            <div class="doc-link">
+                <span><i class="fas fa-envelope"></i> Email Informasi</span>
+                <span>info@smpn286.sch.id</span>
+            </div>
+            <div class="doc-link">
+                <span><i class="fab fa-instagram"></i> Instagram Official</span>
+                <span>@smpn286jakarta</span>
+            </div>
+        </div>
+
+        <div id="dokumen" class="tab-content">
+            <h3>Unduh Dokumen Pendukung</h3>
+            <p>Silakan unduh berkas di bawah ini untuk kelengkapan administrasi:</p>
+            <a href="#" class="doc-link">
+                <span><i class="fas fa-file-pdf"></i> Formulir Surat Pernyataan Pertanggungjawaban Mutlak (SPTJM)</span>
+                <i class="fas fa-download"></i>
+            </a>
+            <a href="#" class="doc-link">
+                <span><i class="fas fa-file-pdf"></i> Juknis PPDB Tahun 2026</span>
+                <i class="fas fa-download"></i>
+            </a>
+            <a href="#" class="doc-link">
+                <span><i class="fas fa-file-pdf"></i> Alur Pendaftaran Jalur Zonasi</span>
+                <i class="fas fa-download"></i>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-item">
+                <h3>Hubungi Kami</h3>
+                <p>📍 Jl. Grogol Petamburan, Jakarta Barat</p>
+                <p>📞 0822-2222-2222</p>
+            </div>
+            <div class="footer-item">
+                <h3>Jam Operasional</h3>
+                <p>Senin - Jumat: 06:30 - 15:00</p>
+                <p>Sabtu - Minggu: Tutup</p>
+            </div>
+        </div>
+        <hr style="opacity: 0.1; margin: 20px 0;">
+        <p style="text-align: center; font-size: 12px; opacity: 0.7;">© 2026 SMPN 286 Jakarta. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            
+            // Sembunyikan semua konten tab
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Hapus class active dari semua tombol
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Tampilkan tab yang diklik dan tambah class active
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+</html>
