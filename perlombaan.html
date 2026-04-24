@@ -90,35 +90,34 @@
         .insta-info { padding: 15px; text-align: left; }
         .insta-info h4 { margin: 0 0 5px 0; color: var(--navy); }
         .insta-info p { font-size: 13px; color: #666; margin: 0; }
-
+        
         /* LIGHTBOX / ZOOM MODAL */
         .lightbox {
             display: none; position: fixed; z-index: 2100;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); align-items: center; justify-content: center;
+            background: rgba(0,0,0,0.95); 
             flex-direction: column;
+            align-items: center;
+            overflow: auto; /* Biar bisa di-scroll pas zoom */
+            padding: 20px 0;
         }
-
         .lightbox-content {
-            max-width: 90%; max-height: 80vh;
-            border-radius: 8px; box-shadow: 0 0 20px rgba(255,255,255,0.2);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 90%;
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+            margin: auto; /* Biar tetep di tengah */
+            display: block;
         }
-
-        /* Controls */
-        .lb-controls { margin-top: 20px; display: flex; gap: 15px; }
-        .lb-btn {
-            background: white; color: var(--navy); border: none;
-            padding: 10px 20px; border-radius: 25px; cursor: pointer;
-            font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 8px;
+        /* Biar tombol kontrol tetep melayang di bawah */
+        .lb-controls { 
+            position: sticky; 
+            bottom: 20px; 
+            margin-top: 20px; 
+            display: flex; 
+            gap: 15px; 
+            z-index: 2200;
         }
-        .lb-btn:hover { background: #eee; }
         
-        .close-lb {
-            position: absolute; top: 20px; right: 30px;
-            color: white; font-size: 40px; cursor: pointer;
-        }
-
         footer { background: #000033; color: white; padding: 40px 10%; margin-top: 50px; text-align: center; }
     </style>
 </head>
@@ -230,47 +229,60 @@
         <hr style="opacity: 0.1; margin: 20px 0;">
         <p style="text-align: center; font-size: 12px; opacity: 0.7;">© 2026 SMPN 286 Jakarta. All Rights Reserved.</p>
     </footer>
-
+    
     <script>
-        let isZoomed = false;
-
+        let scale = 1; // Variable untuk menyimpan status zoom
+        
         function openLightbox(src, title) {
             const lb = document.getElementById('lightbox');
             const img = document.getElementById('lb-img');
             const downloadBtn = document.getElementById('lb-download');
             
             img.src = src;
-            img.style.transform = "scale(1)";
-            isZoomed = false;
-            
+            scale = 1; // Reset zoom ke ukuran semula setiap buka foto
+            img.style.transform = `scale(${scale})`;
+            img.style.cursor = "zoom-in";
+            img.style.margin = "auto"; // Reset posisi ke tengah
+        
             downloadBtn.href = src;
             downloadBtn.setAttribute('download', title + '.jpg');
-            
+        
             lb.style.display = 'flex';
+            // Mencegah scroll pada body saat modal buka
+            document.body.style.overflow = 'hidden'; 
         }
-
+        
         function closeLightbox() {
             document.getElementById('lightbox').style.display = 'none';
+            // Mengembalikan scroll pada body
+            document.body.style.overflow = 'auto'; 
         }
-
+        
         function zoomImg() {
             const img = document.getElementById('lb-img');
-            if (!isZoomed) {
-                img.style.transform = "scale(1.5)";
+            
+            if (scale === 1) {
+                scale = 2; // Perbesar jadi 2x lipat
+                img.style.transform = `scale(${scale})`;
                 img.style.cursor = "zoom-out";
-                isZoomed = true;
+                // Memberi margin agar ada ruang untuk scroll ke segala arah
+                img.style.margin = "200px auto"; 
             } else {
-                img.style.transform = "scale(1)";
+                scale = 1; // Kecilkan kembali
+                img.style.transform = `scale(${scale})`;
                 img.style.cursor = "zoom-in";
-                isZoomed = false;
+                img.style.margin = "auto";
             }
         }
-
-        // Tutup modal kalau klik background hitam
+        
+        // Menutup modal jika area hitam (di luar gambar) diklik
         window.onclick = function(event) {
             const lb = document.getElementById('lightbox');
-            if (event.target == lb) closeLightbox();
+            if (event.target == lb) {
+                closeLightbox();
+            }
         }
-    </script>
+</script>
+    
 </body>
 </html>
