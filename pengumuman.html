@@ -6,6 +6,7 @@
     <title>Pengumuman - SMPN 286 Jakarta</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         :root {
             --navy: #000080;
@@ -71,21 +72,35 @@
         .section-title { color: var(--navy); border-bottom: 3px solid var(--navy); display: inline-block; padding-bottom: 5px; margin-bottom: 40px; }
         
         .card-pengumuman { 
-            background: white; 
-            padding: 30px; 
-            border-radius: 15px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
-            margin-bottom: 20px; 
-            border-left: 5px solid var(--navy); 
-            text-align: left;
+            background: white; padding: 30px; border-radius: 15px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 20px; 
+            border-left: 5px solid var(--navy); text-align: left;
             animation: fadeIn 0.5s;
         }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .date { font-size: 12px; color: #888; margin-bottom: 10px; }
         .badge { background: var(--navy); color: white; padding: 5px 10px; border-radius: 5px; font-size: 11px; text-transform: uppercase; font-weight: bold; }
-        .btn-link { display: inline-block; margin-top: 15px; color: var(--navy); text-decoration: none; font-weight: 600; }
+        .btn-link { display: inline-block; margin-top: 15px; color: var(--navy); text-decoration: none; font-weight: 600; cursor: pointer; }
         .btn-link:hover { text-decoration: underline; }
+
+        /* MODAL STYLE (NEW) */
+        .modal {
+            display: none; position: fixed; z-index: 2000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6); align-items: center; justify-content: center;
+        }
+        .modal-content {
+            background-color: white; padding: 40px; border-radius: 15px;
+            max-width: 600px; width: 90%; position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); animation: slideDown 0.3s;
+        }
+        @keyframes slideDown { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .close-btn { position: absolute; right: 20px; top: 15px; font-size: 28px; cursor: pointer; color: #aaa; }
+        .close-btn:hover { color: black; }
+        #modalTitle { color: var(--navy); margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        #modalFullBody { margin-top: 20px; font-size: 15px; color: #555; white-space: pre-wrap; }
 
         footer { background: #000033; color: white; padding: 40px 10%; margin-top: 50px; text-align: center; }
     </style>
@@ -104,7 +119,6 @@
                     <li><a href="struktur.html">Struktur Organisasi</a></li>
                     <li><a href="prestasi.html">Prestasi</a></li>
                     <li><a href="fasilitas.html">Fasilitas</a></li>
-                    <li><a href="organisasi.html">Organisasi Siswa</a></li>
                 </ul>
             </li>
             <li><a href="kalender.html">Kalender Pendidikan</a></li>
@@ -115,10 +129,10 @@
                     <li class="has-inner">
                         <a href="#">Peserta Didik</a>
                         <ul class="submenu-right">
-                            <li><a href="#">Pembiasaan</a></li>
+                            <li><a href="pembiasaan.html">Pembiasaan</a></li>
                             <li><a href="organisasi.html">Organisasi</a></li>
-                            <li><a href="#">Ekskul</a></li>
-                            <li><a href="#">Komunitas</a></li>
+                            <li><a href="ekskul.html">Ekstra Kulikuler</a></li>
+                            <li><a href="komunitas.html">Komunitas</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -135,8 +149,8 @@
                 <a href="#">Pendaftaran</a>
                 <ul class="dropdown">
                     <li><a href="alur.html">Alur Pendaftaran</a></li>
-                    <li><a href="#">PPDB</a></li>
-                    <li><a href="#">Mutasi</a></li>
+                    <li><a href="ppdb.html">PPDB</a></li>
+                    <li><a href="mutasi.html">Mutasi</a></li>
                 </ul>
             </li>
         </ul>
@@ -149,43 +163,60 @@
             <span class="badge">Penting</span>
             <div class="date">Diposting: 21 April 2026</div>
             <h3>Penerimaan Peserta Didik Baru (PPDB) TA 2026/2027</h3>
-            <p>Informasi mengenai alur pendaftaran, persyaratan dokumen, dan jadwal seleksi masuk dapat diunduh melalui tautan resmi di bawah ini.</p>
-            <a href="#" class="btn-link">Baca Selengkapnya →</a>
+            <p>Informasi mengenai alur pendaftaran, persyaratan dokumen, dan jadwal seleksi masuk...</p>
+            <a onclick="bukaPengumuman('PPDB TA 2026/2027', 'Pendaftaran PPDB SMPN 286 Jakarta akan dibuka mulai bulan Juni secara online. Calon peserta didik harap menyiapkan dokumen asli dan scan berupa:\n\n1. Akta Kelahiran\n2. Kartu Keluarga (KK)\n3. Ijazah/Surat Keterangan Lulus\n4. Sertifikat Prestasi (jika ada)\n\nPastikan data yang diinput sesuai dengan dokumen asli.')" class="btn-link">Baca Selengkapnya →</a>
         </div>
 
         <div class="card-pengumuman">
             <span class="badge">Akademik</span>
             <div class="date">Diposting: 15 April 2026</div>
             <h3>Jadwal Ujian Akhir Semester Genap</h3>
-            <p>Diharapkan seluruh siswa mempersiapkan diri dengan baik. Jadwal lengkap per kelas dapat diunduh dalam format PDF.</p>
-            <a href="#" class="btn-link">Download Jadwal (PDF) →</a>
+            <p>Diharapkan seluruh siswa mempersiapkan diri dengan baik. Jadwal lengkap per kelas...</p>
+            <a onclick="bukaPengumuman('Jadwal Ujian Akhir Semester', 'Ujian Akhir Semester Genap akan dilaksanakan pada tanggal 2-10 Juni 2026.\n\nSiswa diharapkan hadir 15 menit sebelum ujian dimulai dengan membawa kartu ujian dan peralatan tulis lengkap. Dilarang membawa HP ke dalam ruang ujian.')" class="btn-link">Baca Selengkapnya →</a>
         </div>
 
         <div class="card-pengumuman">
             <span class="badge">Kegiatan</span>
             <div class="date">Diposting: 10 April 2026</div>
             <h3>Persiapan Lomba Literasi Digital Nasional</h3>
-            <p>Bagi siswa yang telah mendaftar seleksi internal, harap berkumpul di Lab Komputer pada hari Kamis sepulang sekolah.</p>
-            <a href="#" class="btn-link">Lihat Daftar Peserta →</a>
+            <p>Bagi siswa yang telah mendaftar seleksi internal, harap berkumpul di Lab Komputer...</p>
+            <a onclick="bukaPengumuman('Lomba Literasi Digital', 'Kepada seluruh kandidat lomba, pertemuan teknis (Technical Meeting) akan diadakan pada hari Kamis jam 15.30 di Lab Komputer. \n\nAgenda:\n- Pembagian tim\n- Penjelasan materi lomba\n- Simulasi alat.')" class="btn-link">Baca Selengkapnya →</a>
+        </div>
+    </div>
+
+    <div id="modalPengumuman" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="tutupPengumuman()">&times;</span>
+            <h2 id="modalTitle">Judul</h2>
+            <div id="modalFullBody">Isi lengkap pengumuman...</div>
         </div>
     </div>
 
     <footer>
-        <div class="footer-grid">
-            <div class="footer-item">
-                <h3>Hubungi Kami</h3>
-                <p>📍 Jl. Grogol Petamburan, Jakarta Barat</p>
-                <p>📞 0822-2222-2222</p>
-            </div>
-            <div class="footer-item">
-                <h3>Jam Operasional</h3>
-                <p>Senin - Jumat: 06:30 - 15:00</p>
-                <p>Sabtu - Minggu: Tutup</p>
-            </div>
-        </div>
-        <hr style="opacity: 0.1; margin: 20px 0;">
-        <p style="text-align: center; font-size: 12px; opacity: 0.7;">© 2026 SMPN 286 Jakarta. All Rights Reserved.</p>
+        <p>© 2026 SMPN 286 Jakarta. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        // Fungsi untuk membuka pop-up
+        function bukaPengumuman(judul, isi) {
+            document.getElementById('modalTitle').innerText = judul;
+            document.getElementById('modalFullBody').innerText = isi;
+            document.getElementById('modalPengumuman').style.display = 'flex';
+        }
+
+        // Fungsi untuk menutup pop-up
+        function tutupPengumuman() {
+            document.getElementById('modalPengumuman').style.display = 'none';
+        }
+
+        // Menutup pop-up jika klik di area hitam (luar kotak)
+        window.onclick = function(event) {
+            let modal = document.getElementById('modalPengumuman');
+            if (event.target == modal) {
+                tutupPengumuman();
+            }
+        }
+    </script>
     
 </body>
 </html>
