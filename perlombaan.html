@@ -13,11 +13,7 @@
             --text-dark: #333;
         }
 
-        body {
-            margin: 0; font-family: 'Poppins', sans-serif;
-            background-color: var(--light-bg); color: var(--text-dark);
-            overflow-x: hidden;
-        }
+        body { margin: 0; font-family: 'Poppins', sans-serif; background-color: var(--light-bg); color: var(--text-dark); }
 
         /* NAVIGATION */
         nav {
@@ -31,63 +27,81 @@
         nav ul li { margin-left: 25px; }
         nav ul li a { text-decoration: none; color: var(--text-dark); font-weight: 500; }
 
-        /* GRID CONTENT */
+        /* GRID */
         .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; text-align: center; }
         .section-title { color: var(--navy); border-bottom: 3px solid var(--navy); display: inline-block; padding-bottom: 5px; margin-bottom: 40px; }
 
         .insta-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
         }
 
         .insta-card {
             background: white; border-radius: 12px; overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
         }
         .insta-card:hover { transform: translateY(-5px); }
-        .insta-card img { width: 100%; height: 300px; object-fit: cover; cursor: pointer; }
+        .insta-card img { width: 100%; height: 350px; object-fit: cover; cursor: pointer; }
         .insta-info { padding: 15px; text-align: left; }
-        .insta-info h4 { margin: 0; color: var(--navy); font-size: 16px; }
-        .insta-info p { font-size: 12px; color: #666; margin-top: 5px; }
 
-        /* LIGHTBOX OVERLAY */
+        /* LIGHTBOX FIX */
         .lightbox {
             display: none; position: fixed; z-index: 2100;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); align-items: center; justify-content: center;
-            overflow: hidden; touch-action: none;
+            background: rgba(0,0,0,0.95);
+            flex-direction: column;
+            overflow: auto; /* Memungkinkan scroll saat zoom */
         }
 
-        /* CONTAINER UNTUK IMAGE AGAR BISA DI-DRAG */
+        /* Container gambar biar bisa di-scroll dengan rapi */
         .img-wrapper {
-            cursor: grab; transition: transform 0.3s ease;
-            display: flex; align-items: center; justify-content: center;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+            padding: 40px;
         }
-        .img-wrapper:active { cursor: grabbing; }
 
-        .lightbox-content {
-            max-width: 90vw; max-height: 85vh;
-            user-select: none; pointer-events: auto;
+        #lb-img {
+            max-width: 90%;
+            height: auto;
+            transition: transform 0.3s ease;
+            cursor: zoom-in; /* Default awal */
             border-radius: 5px;
         }
 
-        /* CONTROLS */
-        .close-btn {
-            position: absolute; top: 20px; right: 30px;
-            color: white; font-size: 35px; cursor: pointer; z-index: 2200;
-        }
-        .lb-actions {
-            position: absolute; bottom: 30px; display: flex; gap: 10px; z-index: 2200;
-        }
-        .btn-action {
-            background: white; color: var(--navy); border: none;
-            padding: 10px 20px; border-radius: 30px; font-weight: bold;
-            text-decoration: none; cursor: pointer; font-size: 14px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        /* Foto saat di-zoom */
+        #lb-img.zoomed {
+            transform: scale(2);
+            cursor: zoom-out;
+            max-width: 100%; /* Menghindari limitasi ukuran saat zoom */
         }
 
-        footer { background: #000033; color: white; padding: 30px; margin-top: 50px; text-align: center; font-size: 13px; }
+        /* Tombol Download melayang di bawah */
+        .lb-controls {
+            position: fixed; bottom: 30px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 2200;
+            display: flex; gap: 15px;
+        }
+
+        .lb-btn {
+            background: white; color: var(--navy); border: none;
+            padding: 12px 25px; border-radius: 50px; cursor: pointer;
+            font-weight: 600; text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .close-lb {
+            position: fixed; top: 20px; right: 30px;
+            color: white; font-size: 40px; cursor: pointer; z-index: 2300;
+        }
+
+        footer { background: #000033; color: white; padding: 40px 10%; margin-top: 50px; text-align: center; }
     </style>
 </head>
 <body>
@@ -102,110 +116,78 @@
     </nav>
 
     <div class="container">
-        <h2 class="section-title">Informasi Perlombaan</h2>
+        <h2 class="section-title">Info Perlombaan Siswa</h2>
         <div class="insta-grid">
             <div class="insta-card">
                 <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=800" onclick="openLightbox(this.src, 'Lomba Cerdas Cermat')">
                 <div class="insta-info">
-                    <h4>Lomba Cerdas Cermat</h4>
-                    <p>Klik foto untuk detail & zoom</p>
+                    <h4>Lomba Cerdas Cermat Digital</h4>
+                    <p><i class="far fa-calendar-alt"></i> Deadline: 10 Mei 2026</p>
                 </div>
             </div>
             <div class="insta-card">
-                <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800" onclick="openLightbox(this.src, 'Kompetisi Seni Lukis')">
+                <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800" onclick="openLightbox(this.src, 'Lomba Poster')">
                 <div class="insta-info">
-                    <h4>Kompetisi Seni Lukis</h4>
-                    <p>Klik foto untuk detail & zoom</p>
+                    <h4>Kompetisi Poster Estetik</h4>
+                    <p><i class="far fa-calendar-alt"></i> Deadline: 15 Mei 2026</p>
                 </div>
             </div>
         </div>
     </div>
 
     <div id="lightbox" class="lightbox">
-        <span class="close-btn" onclick="closeLightbox()">&times;</span>
+        <span class="close-lb" onclick="closeLightbox()">&times;</span>
         
-        <div id="imgWrapper" class="img-wrapper">
-            <img id="lb-img" class="lightbox-content" onclick="toggleZoom(event)">
+        <div class="img-wrapper">
+            <img id="lb-img" onclick="toggleZoom()">
         </div>
-
-        <div class="lb-actions">
-            <a id="lb-download" href="#" download class="btn-action"><i class="fas fa-download"></i> Simpan Poster</a>
+        
+        <div class="lb-controls">
+            <a id="lb-download" href="#" download class="lb-btn">
+                <i class="fas fa-download"></i> Simpan Poster
+            </a>
         </div>
     </div>
 
-    <footer>© 2026 SMPN 286 Jakarta</footer>
+    <footer><p>© 2026 SMPN 286 Jakarta. All Rights Reserved.</p></footer>
 
     <script>
-        let scale = 1;
-        let isDragging = false;
-        let startX, startY, translateX = 0, translateY = 0;
-
-        const wrapper = document.getElementById('imgWrapper');
-        const img = document.getElementById('lb-img');
-        const lightbox = document.getElementById('lightbox');
-
         function openLightbox(src, title) {
+            const lb = document.getElementById('lightbox');
+            const img = document.getElementById('lb-img');
+            const downloadBtn = document.getElementById('lb-download');
+            
             img.src = src;
-            document.getElementById('lb-download').href = src;
-            document.getElementById('lb-download').setAttribute('download', title);
+            img.classList.remove('zoomed'); // Pastikan mulai dari ukuran kecil
             
-            // Reset posisi & zoom
-            scale = 1;
-            translateX = 0;
-            translateY = 0;
-            updateTransform();
-            
-            lightbox.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
+            // Setting download agar langsung unduh
+            downloadBtn.href = src;
+            downloadBtn.download = title + ".jpg";
+
+            lb.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Kunci scroll halaman utama
         }
 
         function closeLightbox() {
-            lightbox.style.display = 'none';
-            document.body.style.overflow = 'auto';
+            const lb = document.getElementById('lightbox');
+            lb.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Aktifkan scroll balik
         }
 
-        function toggleZoom(e) {
-            e.stopPropagation(); // Biar gak nutup modal pas klik foto
-            if (scale === 1) {
-                scale = 2.5;
-                img.style.cursor = "zoom-out";
-            } else {
-                scale = 1;
-                translateX = 0;
-                translateY = 0;
-                img.style.cursor = "zoom-in";
-            }
-            updateTransform();
+        // FUNGSI ZOOM KLIK FOTO
+        function toggleZoom() {
+            const img = document.getElementById('lb-img');
+            img.classList.toggle('zoomed');
         }
 
-        function updateTransform() {
-            wrapper.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+        // Close jika klik di area background hitam
+        window.onclick = function(event) {
+            const lb = document.getElementById('lightbox');
+            const wrapper = document.querySelector('.img-wrapper');
+            if (event.target == lb || event.target == wrapper) {
+                closeLightbox();
+            }
         }
-
-        // LOGIKA DRAG (GESER FOTO)
-        lightbox.addEventListener('mousedown', (e) => {
-            if (scale > 1) {
-                isDragging = true;
-                startX = e.clientX - translateX;
-                startY = e.clientY - translateY;
-            }
-        });
-
-        window.addEventListener('mousemove', (e) => {
-            if (isDragging && scale > 1) {
-                translateX = e.clientX - startX;
-                translateY = e.clientY - startY;
-                updateTransform();
-            }
-        });
-
-        window.addEventListener('mouseup', () => { isDragging = false; });
-
-        // Klik area hitam buat nutup
-        lightbox.onclick = function(e) {
-            if (e.target === lightbox || e.target === wrapper) closeLightbox();
-        };
     </script>
-    
 </body>
 </html>
