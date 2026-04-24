@@ -65,7 +65,26 @@
             font-size: 12px;
             margin-right: 10px;
         }
-        
+
+        /* GRID */
+        .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; text-align: center; }
+        .section-title { color: var(--navy); border-bottom: 3px solid var(--navy); display: inline-block; padding-bottom: 5px; margin-bottom: 40px; }
+
+        .insta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .insta-card {
+            background: white; border-radius: 12px; overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+        .insta-card:hover { transform: translateY(-5px); }
+        .insta-card img { width: 100%; height: 350px; object-fit: cover; cursor: pointer; }
+        .insta-info { padding: 15px; text-align: left; }
+
         /* LIGHTBOX FIX */
         .lightbox {
             display: none; position: fixed; z-index: 2100;
@@ -209,7 +228,22 @@
         </div>
     </div>
 
-    <footer><p>© 2026 SMPN 286 Jakarta. All Rights Reserved.</p></footer>
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-item">
+                <h3>Hubungi Kami</h3>
+                <p>📍 Jl. Grogol Petamburan, Jakarta Barat</p>
+                <p>📞 0822-2222-2222</p>
+            </div>
+            <div class="footer-item">
+                <h3>Jam Operasional</h3>
+                <p>Senin - Jumat: 06:30 - 15:00</p>
+                <p>Sabtu - Minggu: Tutup</p>
+            </div>
+        </div>
+        <hr style="opacity: 0.1; margin: 20px 0;">
+        <p style="text-align: center; font-size: 12px; opacity: 0.7;">© 2026 SMPN 286 Jakarta. All Rights Reserved.</p>
+    </footer>
 
     <script>
         function openLightbox(src, title) {
